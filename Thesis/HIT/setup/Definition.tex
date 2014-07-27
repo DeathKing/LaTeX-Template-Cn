@@ -1,0 +1,128 @@
+\newcommand{\mr}[1]{\mathrm{#1}} %定义新命令，用\mr来代替\mathrm
+\def \ReferenceEName {References} %%定义参考文献的标题
+\def \ReferenceCName {参考文献}
+
+%定义双标题命令
+\newcommand{\FigureBiCaption}[2]
+{
+\renewcommand{\figurename}{图}
+\caption{#1}
+\addtocounter{figure}{-1}
+\renewcommand{\figurename}{Fig.}
+\vspace{-0.5ex}
+\caption{#2}
+}
+\newcommand{\SubfigureCaption}[2]  % Two Parameters, the first one is the width of the subfigure,
+{
+\addtocounter{subfigure}{-1}       % the second one is the caption of the subfigure
+\vspace{-2ex}
+\subfigure[#2]{\rule{#1}{0pt}}
+}
+
+\newcommand{\TableBiCaption}[2]
+{
+\renewcommand{\tablename}{表}
+\caption{#1}
+
+\addtocounter{table}{-1}
+\renewcommand{\tablename}{Table}
+\vspace{-0.5ex}
+\caption{#2}
+\vspace{1ex}
+}
+
+\newcommand{\BiChapter}[2]
+{
+    \chapter{#1}
+    \addcontentsline{toe}{chapter}{\bfseries Chapter \thechapter\hspace{0.5em} #2}
+}
+
+\newcommand{\BiSection}[2]
+{
+    \section{#1}
+    \addcontentsline{toe}{section}{\protect\numberline{\csname thesection\endcsname}#2}
+}
+
+\newcommand{\BiSubsection}[2]
+{
+    \subsection{#1}
+    \addcontentsline{toe}{subsection}{\protect\numberline{\csname thesubsection\endcsname}#2}
+}
+
+\newcommand{\BiSubsubsection}[2]
+{
+    \subsubsection{#1}
+    \addcontentsline{toe}{subsubsection}{\protect\numberline{\csname thesubsubsection\endcsname}#2}
+}
+
+\newcommand{\BiAppendixChapter}[2] % 该附录命令适用于发表文章，简历等
+{
+\phantomsection
+\markboth{#1}{#1}%\markboth{\MakeUppercase{#1}}{\MakeUppercase{#1}}
+\addcontentsline{toc}{chapter}{\hei #1}
+\addcontentsline{toe}{chapter}{\bfseries #2}
+\chapter*{#1}
+}
+
+\newcommand{\BiAppChapter}[2]    % 该附录命令适用于有章节的完整附录
+{
+\phantomsection
+\markboth{#1}{#1}%\markboth{\MakeUppercase{#1}}{\MakeUppercase{#1}}
+\chapter{#1}
+%\addcontentsline{toc}{chapter}{\hei #1}
+\addcontentsline{toe}{chapter}{\bfseries Appendix A~~#2}
+}
+
+\renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}%使图编号为 7-1 的格式
+
+\makeatletter
+\renewcommand{\p@subfigure}{\thefigure} %%使子图编号为 7-1(a) 的格式
+\makeatother
+\renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}%%使表编号为 7-1 的格式
+\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}%%使公式编号为 7-1 的格式
+
+\setlength\jot{2.5ex}%设置公式之间的垂直距离 默认value = 3pt
+
+%定义 学科 学位
+\def \xuekeEngineering {Engineering}
+\def \xuekeScience {Science}
+\def \xuekeManagement {Management}
+\def \xuekeArts {Arts}
+
+\ifx \xueke \xuekeEngineering
+\newcommand{\cxueke}{工学}
+\newcommand{\exueke}{Engineering}
+\fi
+
+\ifx \xueke \xuekeScience
+\newcommand{\cxueke}{理学}
+\newcommand{\exueke}{Science}
+\fi
+
+\ifx \xueke \xuekeManagement
+\newcommand{\cxueke}{管理学}
+\newcommand{\exueke}{Management}
+\fi
+
+\ifx \xueke \xuekeArts
+\newcommand{\cxueke}{文学}
+\newcommand{\exueke}{Arts}
+\fi
+
+
+\def \xueweiDoctor {Doctor}
+\def \xueweiMaster {Master}
+
+\ifx \xuewei \xueweiDoctor
+\newcommand{\cxuewei}{博士}
+\newcommand{\exuewei}{Doctor}
+\newcommand{\exueweier}{Doctoral}
+\fi
+
+\ifx \xuewei \xueweiMaster
+\newcommand{\cxuewei}{硕士}
+\newcommand{\exuewei}{Master}
+\newcommand{\exueweier}{Master}
+\fi
+
+\newcommand{\cdash}{—\!\!\!—\!\!\!—}%输入中文破折号的命令

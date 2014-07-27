@@ -1,0 +1,141 @@
+\defaultfont
+
+\BiChapter{模板升级、修改记录}{Update Record of the Thesis Model}
+\label{Updatelog}
+
+\BiSection{说明}{Introduction}
+\label{Update:intro}
+为了更加有效的维护该论文模板，特增加此章，用以记录模板所经历的改动，
+同时此章也有助于用户更深入的了解该模板。
+
+为了让更多的同学分享到最新的论文模板，建议大家在使用模板时如果对模板
+有任何改动或者建议，都别忘了到紫丁香BBS上TeX版把自己发现或建议与大家
+分享一下。
+
+本章的记录包括版本升级、bug修复等任何涉及到模板内容的改动。
+
+目前由~Stanley~在~\url{http://cvs.hit.edu.cn}~上创立了~Pluto（冥王星）哈尔滨工业大学博士学位论文模板开源项目。
+大家的修改可以集中到这里。
+
+\BiSection{存在的问题}{Problems to be Solved}
+已知待解决的问题：
+\begin{hitlist}
+\item 中文文献作者多于3个时输出的是et al 而不是``等''。目前的解决方法是在main.bbl文件中修改。
+\item 会议文献出现的是``2000, vol 2, 15--25'' 的形式，应该是``2000, 2:15--25''。这个也需要在main.bbl文件中修改。
+\end{hitlist}
+
+未知待解决的问题还有赖于大家的使用和发现。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\BiSection{模板的诞生}{The Naissance of the Template}
+本模板是网友UFO等(2004)基于清华大学博士论文模板，
+按照哈尔滨工业大学论文规范开发的\LaTeX{}论文模板。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\BiSection{版本升级至$\gamma$~(by cucme--2005.06.06)}{Version Update06.06.2005(by cucme)}
+\label{Update:06.06.05}
+
+\BiSubsection{章节标号}{Mark of Chapter}
+对于没有章标号的章，如结论等，定义了一个相应的命令\verb"\BiAppendixChapter"。
+
+在这些命令中均含有两个参数，第一个为中文题目，第二个为英文题目。与UFO的最大不同在于，本模版直接生成中英文目录。
+
+\BiSubsection{列表环境}{List Environment}
+本模版将3个传统的列表环境参数作了修改，因此可以直接使用它们。不过有以下问题：
+\begin{hitlist}
+\item 缩进的具体参数可能有点误差，现在是按两个字$24pt$来缩进的，而实际上应该是两个字加上两个字间距。请朋友们试用后再修改吧。
+
+　　还有就是每个列表的item中的非首段没有缩进，我的临时解决办法是使用$2$个全角空格``　''来模拟缩进。
+
+\item 这是当前hitlist环境的第二个item，上一段就是使用$2$个全角空格``　''来模拟缩进的。
+\end{hitlist}
+
+\BiSubsection{参考文献}{Reference}
+模板中使用的是紫丁香网友Stanley提供的~chinesebst.bst。作了一下修改：
+\begin{hitlist}
+\item 修正了引用书籍不输出页码问题
+\item 修正了引用博士、硕士论文不输出页码的问题
+\item 修正了引用博士硕士论文的学校和学位类别颠倒的问题
+\item 引用书籍版次位置不正确的问题
+\item 使用缩写期刊名时吞掉"."问题
+\end{hitlist}
+还存在的问题：
+\begin{hitlist}
+\item 中文文献作者多于3个时输出的是et al 而不是"等"，(我google了一下，貌似要用hooklee编的一个程序fixbbl来搞定，哪位试试吧。)
+\end{hitlist}
+
+目前可以这么临时解决修改bbl文件，最后版本的时候把中文出现et.al的地方用``等''代替。
+保存一份main.bbl文件，以后用这个文件代替同名文件就可以了。
+
+另外多于三个作者的英文文献没有发现输出不一致的问题，
+可以再讨论一下。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\BiSection{版本升级至1.2(by nebula--2005.06.28)}{Version Update 28.06.2005(by nebula)}
+\label{Update:28.06.05}
+这次升级主要是把近期关于该模板的一些修改整合进模板，同时增加了一些
+介绍性的文字和例子。
+
+\BiSubsection{模板内容的修改}{Update on the Content of the Model}
+\begin{hitlist}
+\item 重写了第一章软件环境介绍部分；
+\item 第二章打印部分增加了关于Page Scaling选项的说明；
+\item 第二章增加了一些公式的例子；
+\item 增加了第三章“模板修改记录”，将校庆版的改动记录进来；
+\item 增加了Unix/Linux下的clean方法，增加了一个Makefile文件，\$~make clean即可；
+\end{hitlist}
+
+\BiSubsection{模板格式的修改}{Update on the Format of the Model}
+\begin{hitlist}
+\item 在package.tex中把hyperref宏包的设置部分移到最后，避免与其它宏包
+的冲突，解决了书签、目录链接不正确的问题；
+\item 解决了书签的另一个问题，在点各个使用BiAppendixChapter的附录或
+摘要时，标题总是被跳过去的，修改了Definition.tex和format.tex；
+\item 解决了“定义”、“性质”等序号错乱的问题，修改了format.tex文件；
+\item 去掉了关键字和Key Words后面的冒号；
+\item 中文封页下面“研究生”等字按要求改为黑体；
+\item 英文封页下边左侧的文字同样改为黑体字；
+\item 增添了使用受权书的目录项和书签项；
+\item 解决了目录细点、粗点问题，使用的是Stanley提供的方法1和2；
+\item 增加了目录abstract后面的空行；
+\item 调整目录行距；
+\item 解决了CONTENTS和ABSTRACT大写的问题；
+\item 调整了目录中点之间的距离使之更符合工大论文要求；
+\end{hitlist}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\BiSection{版本升级至1.3~(by Stanley)}{Version Update(by Stanley)}
+
+在~\url{http://cvs.hit.edu.cn}~上创立了~Pluto（冥王星）项目， 以利于模板的发布和修改。
+
+进行了下面这些修改：
+\begin{hitlist}
+\item 小小节的标题形式是和段落在一起的，并且不出现在目录中
+\item ``第1章''变成``第~1~章''，原来的在format.tex中已经修改，但是好像
+   忘了将后面的删除了，也就是\verb"\chaptername"定义了两次，大家可以看看
+\item main.tex中的格式定义内容都放到了format.tex文件中
+\item 增加了yap使用开关，当为true时，使用yap查看时生成超级链接
+\item 在definition.tex中，增加了中文破折号命令\verb"\cdash",大家可以看看，
+\item 页眉``第1章''和``章标题''之间增加了两个空格
+\item 封面的对齐方式等进行了微调
+\item 将format.tex definition.tex package.tex中的一些注释去掉了，
+   由于经过多次更改，变得到处都是注释，使得内容比较乱，以后都将更改的
+   内容写到ChangLog里面吧
+\item 增加了有章节的附录命令\verb"\BiAppChapter"，使用方法参考appA.tex。
+\item 增加了hitlist列表环境和publist列表环境。
+\item 修改和完善了makefile文件
+\item 修改了各章节的使用说明等。
+\item 增加了版权声明章节。
+\item 首封增加了工大的logo，谁能贡献一个好点的logo
+\end{hitlist}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\BiSection{版本号说明}{The Version Control on the template}
+\begin{hitlist}
+\item UFO模板为1.0版本。
+\item cucme模板为1.1版本。
+\item nebula模板为1.2版本。
+\item Stanley模板为1.3版本。
+\item 做成真正的模板后为3.0版本，之后用``$\pi$''的值作为版本号，以后每升级一次精确度进一位，这是
+借鉴\LaTeX{}的版本记录方法，象征着趋于完美。
+\end{hitlist}

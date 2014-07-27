@@ -1,0 +1,568 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                                       %%
+%%     本模板基本达到了武汉大学硕(博)士学位论文的格式要求.                               %%
+%%     本文档宜用 CCT 编译; 编译两遍后, 再用 dvi2pdf 得到 pdf 文档.                      %%
+%%     如果使用了 bibtex 做参考文献, 建议用 TeXify 编译. 否则得不到 bib 文件.            %%
+%%                                                                                       %%
+%%                                   黄正华  huangzh@whu.edu.cn                          %%
+%%                                         2004年10月27日                                %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%& -makeindex_opts='-C mixed -s cct.ist'          %  索引按拼音排序
+%\documentclass[a4paper,CJK,twoside,11pt]{whucls} %  论文双面打印
+\documentclass[a4paper,CJK,oneside,11pt,master]{whucls} %可选项~phd 或~master: 使封面为博士论文或硕士论文字样.
+\usepackage{graphicx}
+\usepackage{cases}
+\usepackage{latexsym}                      %使用latex这一专用记号, 使用命令\LaTeX{},注意不能少了{}
+\usepackage{fvrb-ex}                       %是为了书写本文第二章的例子: 右边是源码, 左边是结果.
+%\usepackage{tabularx,multirow,bigdelim}   %给出文中公式排版的一个例子.
+\usepackage{everb}
+\usepackage{mflogo}                        % \MP 得 MetaPost 字样
+%==================================参考文献========================================================
+\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}  %自定义新命令\upcite, 使参考文献引用以上标出现
+%参考文献样式
+% plain,unsrt,alpha,abbrev,chinesebst
+\bibliographystyle{plain}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%超级链接/书签%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[dvipdfm,
+            pdfstartview=FitH,
+            CJKbookmarks=true,
+            bookmarksnumbered=true,
+            bookmarksopen=true,
+            colorlinks=true, %注释掉此项则交叉引用为彩色边框(将colorlinks和pdfborder同时注释掉)
+            pdfborder=001,   %注释掉此项则交叉引用为彩色边框
+            citecolor=magenta,% magenta , cyan
+            linkcolor=blue,
+            %linktocpage=true,
+            ]{hyperref}       % hyperref 宏包通常要求放在导言区的最后!!!
+%\AtBeginDvi{\special{pdf:tounicode GBK-EUC-UCS2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\makeindex
+\begin{document}
+
+\fenleihao{ O 159 } %分类号
+\miji{}             %密级
+\UDC{ }
+\bianhao{ 10486 }   %编号
+
+\title{\kaishu 武汉大学硕（博）士论文~{\Huge \LaTeX{}}~模板}
+\author{黄\ 正\ 华}
+\jiaoshi{胡宝清\quad 教授}           %指导教师
+\zhuanye{计算数学}                   %专业
+\fangxiang{智能计算与智能信息处理}   %方向
+\date{二〇〇五年\ 五月\ 一日}
+\maketitle
+%-----------------------------------------------------------------------------
+\include{frontmatter} %加入英文封面, 申明.
+
+\frontmatter
+%------------------------------------------------------------------------------
+\include{midmatter}   %加入中英文摘要.
+
+\midmatter    %自定义的命令, 见 whucls.cls
+%------------------------------------------------------------------------------
+\renewcommand{\baselinestretch}{1.4} \small\normalsize         % 更改下文的行距
+%==========================把目录加入到书签==============================%%%%%%
+\clearpage %如果是book双面打印, 改成 \cleardoublepage                    %%%%%%
+\phantomsection                                                          %%%%%%
+\addcontentsline{toc}{chapter}{目录}                                     %%%%%%
+%========================================================================%%%%%%
+\tableofcontents
+
+\mainmatter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%--------main matter-------%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%============================================================================================================%%%
+\chapter{杂七杂八的话}
+
+\section{Readme}
+
+本模板文件夹中包括下列文件:\index{Readme}
+\begin{center}
+\begin{tabular}{rl}
+\hline\smallskip
+    whucls.cls     &  适合武汉大学硕博士毕业论文要求的 class file.  \\
+    whubib.bst     &  本人定制的一个参考文献类型.{\protect\footnotemark} 供选用.\\
+    whubook.tex    &  主文档. \\
+    frontmatter.tex&  英文封面, 郑重申明. \\
+    midmatter.tex  &  中文摘要, 英文摘要. \\
+    backmatter.tex &  致谢, 发表作品列表. \\
+    BIBbase文件夹  &  专门用来存放参考文献库, 是为了防止误删.{\protect\footnotemark}\\[0.5ex]
+\hline
+\end{tabular}
+\end{center}
+  \footnotetext[1]{定制这个参考文献格式, 主要是希望尽可能满足武汉大学硕士论文的相应格式要求, 比如要求将~article 的``年份''写在``卷号''之前.
+                   存在的问题是: 无法将~book 的``出版时间''标在``出版单位''之前. 事实上, 这个要求有悖于``国家标准~7714-87 文后参考文献著录规则''.
+                   作者名的写法, 依照了``文后参考文献著录规则'', 比如~Albert Einstein 写为~Einstein A.}
+  \footnotetext[2]{编译信息文件常常让我们的文件夹变得凌乱不堪, WinEdt窗口的``垃圾箱''按钮(Erase Working Files),
+     可以让我们方便地删除这些``垃圾''文件. 这也减少了误删文件的可能.}
+
+可能这里的文档看上去有点多. 如果不习惯用~\verb|\include{ }|~的方式加入``子文档'', 当然可以把它们合并在主文档, 成为一个文档.
+(但是, 这样并不会给我们带来方便.)
+
+利用~WinEdt~的~Project tree, 可以方便地管理这些文件:
+\begin{itemize}
+    \item 点击~WinEdt~窗口的~Project Tree~按键;
+    \item 再点击~WinEdt~窗口的~Set Main File~按键;
+\end{itemize}
+接下来的管理, 已经清楚地展示在跳出的窗口中了. 再去处理其他的文件时, 还要点击~WinEdt~窗口的~Remove Main File~按键.
+
+在~\everb+\documentclass[ ]+~中有一个可选项~phd 或~master: 选择其中一个选项, 使论文封面为``\textcolor{red}{硕士论文}''
+或为``\textcolor{red}{博士论文}''字样.
+
+模板中使用了``索引''. ({\kaishu 加入索引的方法很简单: 在正文中加入~\everb|\index{词条}| 就可以了.})\index{加入索引的方法}
+如果不想加入索引, 去掉导言区的~\everb|\makeindex| 和文档结尾处的~\everb|\printindex| 即可.
+
+\section{文档的编译}
+
+
+本模板是基于cct的, 用cct编译可以有比较好的效果.\index{编译方法}
+用 cct 编译两遍后, 得到 dvi 文件; 再用 dvi2pdf 得到 pdf 文档.
+如果使用了 bibtex 做参考文献, 建议用 TeXify 编译.
+
+我个人比较偏好于用CCT做中文文档. CCT的长处大概有以下几点:
+\begin{itemize}
+    \item 字号表现更准确;
+    \item 字间距和断行更为合理;
+    \item 中英文间距会自动给出. 用\LaTeX{}直接编译的文档, 要保持中英文间距,
+        通常是在敲入文档时在中英文间加入符号\verb|~|. 这是一个老生常谈的问题了.
+\end{itemize}
+
+ 如果您是使用BibTeX做参考文献, 用CCT编译本模板是得不到参考文献的. 此时可以用TeXify编译.
+ 但是, 这样一来中英文间距又成问题了.
+ 办法大概可以选用下述之一:
+ \begin{enumerate}
+    \item 选择用TeXify编译, 那就得养成在中英文间敲入符号\verb|~|的习惯;
+    \item 先用TeXify编译, 完全定稿后再用CCT编译, 此时需要把TeXify编译得到的bbl文件,
+    粘贴整理到源文档之后.
+ \end{enumerate}
+
+关于 CCT, 还可以看看 CCT 的说明文档(在安装目录下有).
+至少要从中知道\CCTunderdot{怎样调整字体、字号}.
+
+张林波先生制作的 CCT 更新得比较快, 可以从
+\href{ftp://ftp.cc.ac.cn/pub/cct/}{\texttt{ftp://ftp.cc.ac.cn/pub/cct/}}
+中下载安装 CCT 升级包.
+
+如何查找说明文档?
+ \begin{enumerate}
+    \item 方法之一: Shift+Ctrl+F1, 填入宏包名搜索即可. ({\kaishu 比如搜一下 hyperref 宏包的说明文档.})
+          也可以在 WinEdt 窗口点击进入 help $\dashrightarrow$ LaTeX Doc, 输入宏包名查找.
+    \item 有时间的话, 自己到安装目录下去翻看吧, 里面有无尽的宝藏.
+\end{enumerate}
+
+\section{标点符号的问题}
+建议使用半角的标点符号, 后边再键入一个空格(没有空格的话, 可能会导致无法正确断行, 特别是在英文书写中要注意此问题!).\par
+在中文文档中使用全角标点, 机器会把全角标点及其连接的前后文, 看作没有断行的字符, 从而不能正确断行.
+这些问题, 目前还期待有进一步的解决.\par
+但是, 无论您偏向于全角或半角, 强烈建议您使用实心的句号, 只要您书写的是自然科学的文章.
+原因可能是因为, 比如使用全角句号的句子结尾处的``\everb|x。|''容易误为数学式$x_0$(\everb|$x_0$|)吧.
+
+
+\section{论文电子版提交的格式问题}
+
+《武汉大学博、硕士研究生学位论文缴送办法》要求``电子版应采用Word97或Word2000格式(DOC)编辑''.
+关于这个重要的问题, 我已致信武汉大学图书馆总馆信息服务中心袁晓川老师,
+得到的答复是: ``用\LaTeX{}软件排版的论文可直接提交PDF格式.''
+
+
+%%%============================================================================================================%%%
+\chapter{公式排版的注意事项}
+
+数学公式的排版, 建议尽可能考虑使用 amsmath 宏包.
+AMS-LaTeX 在数学公式的处理上更为专业和地道.
+名著``The \LaTeX{} Companion''的``Chapter 8: Higher Mathematics''简单明了地叙述了 AMS-LaTeX 的用法, 值得我们研读.
+如果您安装了CTeX套装, 目录\everb|C:\CTeX\CTEX\doc|下名为 ch8 的pdf文件就是. \footnote{另一个目录下也有: C:/CTeX/texmf/doc/guides/companion/ch8.pdf.}
+点击\href{C:/CTeX/CTEX/doc/ch8.pdf}{这里}试试看.
+
+另外一个示例丰富的必备文档是``Mathmode'', 作者 Herbert Vo\ss~在 \href{http://perce.de/LaTeX/math/}{其网页}
+正在不断地推出其更新版本\upcite{Mathmode}.
+
+
+\section{公式编号的问题}
+
+下文要提及的 align, split, subequations, cases 等环境, 均需要调用 amsmath 宏包.
+这个几乎是必用的宏包, 已在 whucls.cls 中加入了(见 whucls.cls 第350行).
+
+1.多行公式建议使用align环境. 用eqnarray的话, 等号\footnote{当然包括不等号的情形, 以下皆同.}两侧的间距有点过大.
+比较:
+\smallskip
+\begin{SideBySideExample}[xrightmargin=8cm,frame=single ]
+  \begin{align}
+   x+y+z&=a,\\
+   1+2+3&=b.
+  \end{align}
+\end{SideBySideExample}
+\smallskip
+\begin{SideBySideExample}[xrightmargin=8cm,frame=single ]
+  \begin{eqnarray}
+   x+y+z&=&a,\\
+   1+2+3&=&b.
+  \end{eqnarray}
+\end{SideBySideExample}
+\smallskip
+
+2.多个等号需要换行的公式, 建议使用split环境({\kaishu 当然, 用align也可以}).
+有的朋友在这里使用的是eqnarray, 效果不能令人满意.
+\smallskip
+\begin{SideBySideExample}[xrightmargin=8cm,frame=single ]
+  \begin{equation}
+  \begin{split}
+    f(x) &= x+y+z\\
+         &= 1+2+3.
+  \end{split}
+  \end{equation}
+\end{SideBySideExample}
+\smallskip
+\begin{SideBySideExample}[xrightmargin=8cm,frame=single ]
+  \begin{eqnarray}
+    f(x) &=& x+y+z\notag\\
+         &=& 1+2+3.
+  \end{eqnarray}
+\end{SideBySideExample}
+\smallskip
+
+看看 align 的例子:
+\begin{everbatim}
+\begin{align}
+   f(x)&=x+y+z\\
+       &=1+2+3.
+\end{align}
+\end{everbatim}
+排版的结果如下:
+\begin{colorboxed}[width=\linewidth]
+\begin{align}
+   f(x)&=x+y+z\\
+       &=1+2+3.
+\end{align}
+\end{colorboxed}
+所以, align 环境的使用范围是很广的.
+%\begin{SideBySideExample}[xrightmargin=8cm,frame=single ]
+%\begin{align}
+%   f(x)&=x+y+z\\
+%       &=1+2+3.
+%\end{align}
+%\end{SideBySideExample}
+%\smallskip
+
+如果您需要在使用split环境时, 公式编号标在最后一行, 则需要在引用amsmath宏包时,
+增加tbtags选项. 即: \everb|\usepackage[tbtags]{amsmath}|.
+
+3.子公式的情形, 使用subequations环境:
+\smallskip
+\begin{SideBySideExample}[xrightmargin=8cm,frame=single ]
+  \begin{subequations}
+  \begin{align}
+  y & = d\\
+  y & = cx+d\\
+  y & = bx ^{2}+ cx+d\\
+  y & = ax ^{3}+ bx ^{2}+ cx+d
+  \end{align}
+  \end{subequations}
+\end{SideBySideExample}
+\smallskip
+
+4.大括号下并列的式子, 右边只有一个纵向居中的编号:
+\smallskip
+\begin{SideBySideExample}[xrightmargin=8cm,frame=single ]
+  \begin{equation}\label{eq:array}
+  \left\{
+   \begin{array}{c}
+   x + y = z,  \\
+   1 + 2 = 3.  \\
+   \end{array}
+  \right.
+  \end{equation}
+\end{SideBySideExample}
+\smallskip
+
+或者比较cases环境:
+\smallskip
+\begin{SideBySideExample}[xrightmargin=8cm,frame=single ]
+  \begin{equation}
+  \begin{cases}
+    x + y = z,  \\
+    1 + 2 = 3.  \\
+  \end{cases}
+  \end{equation}
+\end{SideBySideExample}
+\smallskip
+
+不要式子\eqref{eq:array}中的大括号, 编号要求不变:
+\smallskip
+\begin{SideBySideExample}[xrightmargin=8cm,frame=single ]
+  \begin{equation}
+   \left.
+    \begin{array}{c}
+    x + y = z,  \\
+    1 + 2 = 3.  \\
+    \end{array}
+   \right.
+  \end{equation}
+\end{SideBySideExample}
+\smallskip
+
+5.大括号下并列的式子, 每个都加上编号, 需要调用cases宏包:\footnote{这是一个宏包! 与amsmath宏包中的cases环境相区别.}
+\smallskip
+\begin{SideBySideExample}[xrightmargin=8cm,frame=single ]
+  \begin{numcases}{}
+   x+y=z,\\
+   1+2=3.
+  \end{numcases}
+\end{SideBySideExample}
+\smallskip
+
+为什么\everb|\begin{numcases}{}|有一对空的大括号? 因为它的基本用法是这样的:
+\smallskip
+\begin{SideBySideExample}[xrightmargin=8cm,frame=single ]
+  \begin{numcases}{|x|=}
+   x,  & for $x \geq 0$;\\
+   -x, & for $x < 0$.
+  \end{numcases}
+\end{SideBySideExample}
+\smallskip
+
+6.怎样给公式的推导加上注释? 比如可以用 align*, 每步公式后面使用\everb|\tag{...}|命令. 比如
+\begin{everbatim}
+  \begin{align*}
+   x = & x \circ e        \tag{\kaishu $e$~是幺元}\\
+     = & x \circ \theta   \tag{$e=\theta$ }\\
+     = & \theta           \tag{\kaishu $\theta$~是零元}
+\end{align*}
+\end{everbatim}
+排版的结果如下:
+\begin{colorboxed}[width=\linewidth]
+\begin{align*}
+   x=&x\circ e \tag{\kaishu $e$~是幺元}\\
+    =&x\circ \theta \tag{$e=\theta$ }\\
+    =&\theta\tag{\kaishu $\theta$~是零元}
+\end{align*}
+\end{colorboxed}
+
+
+%7.下面这个问题很少会有人要用到: 怎样在case的情形, 后边加上注解, 而某些公式还要编上号?
+%
+%用 cases 宏包:
+%\smallskip
+%\begin{SideBySideExample}[xrightmargin=8cm,frame=single ]
+%  \begin{numcases}{}
+%   x+y=z,\qquad\qquad\text{这里是一个注释}\notag\\
+%   1+2=3.
+%  \end{numcases}
+%\end{SideBySideExample}
+%\smallskip
+%这个效果不很理想.
+%
+%
+%更复杂一点的方法是结合使用 tabularx, multirow, bigdelim 宏包:
+%\begin{center}
+%\begin{tabularx}{\linewidth}{rXc}
+% \ldelim\{{2}{3cm }[ some text here ]
+% & $ x = 2\quad \text {if }y > 2 $ & {注解}\\
+% & $ x = 3\quad \text {if }y \le 2$ &\refstepcounter{equation}(\theequation)
+% \end{tabularx}
+%\end{center}
+%三个公式:
+%\begin{center}
+%\begin{tabularx}{\linewidth}{rXc}
+% \ldelim\{{3}{3cm }[ some text here ]
+% & $ x = 0\quad \text {if }y > 2 $ & \refstepcounter{equation}(\theequation)\\
+% & $ x = 2\quad \text {if }y = 2 $ & {注解}\\
+% & $ x = 3\quad \text {if }y < 2$ &\refstepcounter{equation}(\theequation)
+% \end{tabularx}
+%\end{center}
+%前面没有文字的:
+%\begin{center}
+% \begin{tabularx}{\linewidth}{rXc}
+% \ldelim\{{3}{6cm}[\hspace{5.7cm} ]
+% & $ x = 0\quad \text {if }y > 2 $ & \refstepcounter{equation}(\theequation)\\
+% & $ x = 2\quad \text {if }y = 2 $ & {注解}\\
+% & $ x = 3\quad \text {if }y < 2 $ &\refstepcounter{equation}(\theequation)
+% \end{tabularx}
+%\end{center}
+%
+%这里, 6cm 是公式左缩进的距离, 5.7cm 是大括号左缩进的距离.
+
+\section{公式排版的一些琐碎细节}
+\renewcommand{\baselinestretch}{1.6}
+\begin{itemize}
+    \item \everb|$f(x,\,y)$|的效果是$f(x,\,y)$, 要比\everb|$f(x,y)$|的效果$f(x,y)$好.
+    \item \everb+$\{ f(x) \bigm| x\in N \}$+ 的效果$\{ f(x) \bigm| x\in N \}$,
+          要比\everb+$\{ f(x) | x\in N \}$+ 的效果$\{ f(x) | x\in N \}$好.
+    \item \everb|$$ S(a,\,b)=N \Big( T \big( N(a),\,N(b) \big) \Big) $$|的效果
+          $$ S(a,\,b)=N \Big( T \big( N(a),\,N(b) \big) \Big), $$
+          比\everb|$$ S(a,\,b)=N \left( T \left( N(a),\,N(b) \right) \right) $$|的
+          效果$$ S(a,\,b)=N \left( T \left( N(a),\,N(b) \right) \right) $$要好一点儿;
+          也可以比较\everb|$$ S(a,\,b)=N ( T ( N(a),\,N(b) ) ) $$|的效果$$ S(a,\,b)=N ( T ( N(a),\,N(b) ) ).$$
+          命令\verb|\big -- \Big -- \bigg -- \Bigg |是逐渐增大的.
+    \item 公式中的等号(不等号)是一个动词, {\kaishu 显示公式}(即非行内公式)的结尾出, 通常应有逗号或句号等标点符号,
+          当然也可以没有标点符号. 比如前述的三个公式. 显示公式是否要加标点, 您只要把它看成行内公式, 就完全清楚了.
+    \item $\max,\,\sin,\,\ln,\,\sup$等等记号要用\everb+$ \max, \sin, \ln, \sup $+输入,
+          \everb+$ max, sin, ln, sup $+得到的是$max,\, sin,\, ln,\, sup$, 这不符合运算符要用正体的要求.
+\end{itemize}
+
+%%%%============================================================================================================%%%
+
+\chapter{纳入~jpg 图片的问题}
+
+要把 jpg 文件\index{jpg 图片}用 ebb 程序处理一下, 得到一个后缀为 .bb 的文件; 再来运行 \LaTeX.
+否则编译时会报错说找不到``Bounding Box''.
+
+    ebb 程序在 \LaTeX{}系统里面已经附带了, 在此目录下: C:/CTeX/texmf/miktex/bin .
+
+    处理 jpg 文件的具体步骤:
+
+    右键点击 jpg 文件 ------ ``打开方式'' ------``选择程序'' ------ (在跳出的窗口中点击)``浏览''
+------ 进入目录 C:/CTeX/texmf/miktex/bin , 点击 ebb 程序 ------``确定''即可.
+
+    (以后再用右键点击 jpg 文件时, 在打开方式里面就有一个 Bounding Box Extractor, 运行它就行了. 不用重复上面的步骤了. )
+
+     要注意的是, \colorbox{yellow!85}{编译得到的 dvi 文件和 ps 文件, 图像是变形扭曲的.}
+     要 dvi2pdf 得到 pdf 文件才能看到正确的结果.
+
+\begin{figure}[h]
+  \includegraphics[width=16.0cm]{pic.jpg}
+  \caption{这是一张 jpg 彩色图片的例子}
+\end{figure}
+
+
+\chapter{其他事项}
+\begin{itemize}
+    \item 插图\index{插图}的制作, 建议使用~\MP, pgf 或者 PSTricks.
+          和PSTricks一样, pgf 的长处是源文件直接植入 TeX 文档, 管理起来比较方便.
+          这也是和~\MP 的一个区别.
+    这里有我写的一个关于初次使用~\MP 的小文档:\\    \href{http://www.ctex.org/forums/index.php?showtopic=24403}
+         {\texttt{http://www.ctex.org/forums/index.php?showtopic=24403}}.\\
+         可能的话, 建议了解一下~MetaGraf, WinFig, Gnuplot.
+    \item 生成参考文献, 建议使用~BibTeX.\index{BibTeX} 这里有我写的一个文档: \\ \href{http://www.ctex.org/forums/index.php?showtopic=26056}
+         {\texttt{http://www.ctex.org/forums/index.php?showtopic=26056}}.
+    \item 幻灯片\index{幻灯片}的制作, 建议使用~Beamer. 这里有我写的一个模板, 谨供参考:\\ \href{http://www.ctex.org/forums/index.php?showtopic=27695}
+         {\texttt{http://www.ctex.org/forums/index.php?showtopic=27695}}.
+\end{itemize}
+%下面给出一个用 pgf 作图的简单例子.
+%\begin{everbatim}
+%  
+%\end{everbatim}
+
+%%%============================================================================================================%%%
+\chapter{武汉大学关于研究生学位论文印制规格的规定}
+
+\begin{colorboxed}
+ 这个规定可以从武汉大学研究生院网页下载, 下载页面是
+ \begin{center}
+ \href{http://www.gs.whu.edu.cn/ziye/degree/xueweisy.htm}
+         {\texttt{http://www.gs.whu.edu.cn/ziye/degree/xueweisy.htm}}.
+ \end{center}
+ 为了避免此规定的更新导致的不一致, 建议制作论文之前, 到研究生院下载关于论文印制的最新规定.
+\end{colorboxed}
+
+国务院学位办有关文件规定:  研究生学位论文撰写和编印必须符合国家标准局统一编制格式,
+并将博士学位论文提交北京图书馆和北京科技信息研究所收入国家级图书编目,
+以便及时向社会提供查阅, 促进国内外学术交流.
+根据文件精神, 对我校硕士、博士学位论文印制规格作出如下规定:
+
+\section{论文装订格式的排列顺序}
+\begin{description}
+    \item[(一)] 封面
+    \item[(二)] 论文英文题目(专用一页纸, 上方为题目, 下方为研究生姓名、外文专业应有中文题目)
+    \item[(三)] 郑重声明
+    \item[(四)] 中文摘要
+    \item[(五)] 英文摘要
+    \item[(六)] 目录
+    \item[(七)] 引言
+    \item[(八)] 正文
+    \item[(九)] 中外文参考文献
+    \item[(十)] 后记(也可不要此页)
+\end{description}
+
+\section{论文印制规格及要求}\index{论文印制规格及要求}
+
+\begin{itemize}
+    \item 论文用A4纸(210×297mm)标准大小的白纸打印;\index{论文印制规格及要求!纸张大小}
+    \item 论文在打印时, 纸张四周留足空白边缘,
+          每页上方(天头)和左侧(订口)应分别留边25mm以上, 下方(地脚)和左侧(切口)分别留边25mm以上.
+\end{itemize}
+
+
+\section{论文封面格式}
+(一)分类号. 必须在封面左上角注明分类号, 一般应注明《中国图书资料分类法》的类号,
+    同时尽可能注明《国际十进分类法UDC》的类号.
+
+(二)密级. 论文必须按国家规定的保密条例在右上角注明密级(如系公开型论文则可不注明密级).
+
+(三)编号. 武汉大学编号为10486, 标注在封面右上角.
+
+(四)论文题目. 题目必须用楷体标准一号字标注于明显的位置, 应是集中概括论文最重要的内容,
+    一般不超过20个字, 以有助于选定关键词和编制题录. 题目不能用缩略词、首字母缩写字、字符、代号和公式等,
+    题目语意未尽, 可用副标题补充说明. 外语专业的论文题目一般采用英文, 英文题目不宜超过10个实词.
+
+(五)论文作者姓名.
+
+(六)论文指导教师姓名. 指导教师姓名必须是当年被学校批准招收博士生、硕士生的教师.
+
+(七)学科专业名称. 学科专业名称必须是我校已有学位授予权的学科专业, 并按国家颁布的学科专业目录
+    中一级学科或二级学科名称印制.
+
+(八)书脊(专指博士学位论文). 书脊上应用仿宋体四号字于上方标明论文题目, 下方注明研究生姓名.
+
+(九)论文封面统一用120克铜版纸, 封面底色为白色.
+
+\section{论文摘要}
+中、英文论文摘要内容应一致, 摘要应具有独立性和自含性, 是一篇完整的短文,
+其内容应保留原论文的主要信息, 即不看论文全文就能获取必要的信息, 不能与引言相互混淆.
+\section{论文关键词}
+每篇论文必须选取3-5个中、英文关键词, 排在其论文摘要的左下方.
+中文关键词尽可能用《汉语主题词表》等词表提到的规范词, 以便检索.
+\section{目录}
+目录是论文的提纲, 也是论文组成部分的小标题.
+排列顺序是:
+\begin{enumerate}
+    \item 中文摘要
+    \item 英文摘要.
+    \item 引言
+    \item 正文章节
+    \item 中外文参考文献
+    \item 后记. 并对每项标明页码.
+\end{enumerate}
+\section{引言}
+引言主要阐明研究工作的起源、沿革、目的以及相关领域内国内外已有的研究成果；
+自己在已有的基础上所解决的问题或填补的知识空白点. 言简意赅, 不要成为摘要的注释.
+\section{正文}
+  正文是论文的主体, 要求论点正确, 论据可靠, 观点明确. 正文结构一般由文献综述、实验研究或社会实践阐述、
+  理论分析、结论四部分组成, \textcolor{red}{正文用小4号字体打印}.\index{正文字号}
+\section{中外文参考文献}
+       中外文参考文是论文正文中引用文献的集中反映.
+       \begin{itemize}
+        \item 文献为期刊的排列格式是: 〈编号〉、作者、文章题目名、期刊号、年份、卷号、期数、页码.
+        \item 文献为图书的排列格式是: 〈编号〉、作者、书名、出版时间、版次、出版单位、页码.
+       \end{itemize}
+\section*{论文页眉}
+\textcolor{red}{论文制作时不须页眉}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%参考文献%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\baselinestretch}{1.2}
+\begin{thebibliography}{000}
+  \bibitem{sofoot}毛紫阳(sofoot), 国防科技大学硕(博)士学位论文模板, \\
+    \href{http://www.ctex.org/forums/index.php?showtopic=23050}
+         {\texttt{http://www.ctex.org/forums/index.php?showtopic=23050}}
+    \bibitem{zf} 中国科学院数学与系统科学研究院计算数学与工程计算研究所学位
+    论文模版,\\
+    \href{http://lsec.cc.ac.cn/thesis-template}
+         {\texttt{http://lsec.cc.ac.cn/thesis-template}}
+  \bibitem{r1} 作者, 文章题目, 期刊名, 年份(期数): 起止页码
+  \bibitem{r2} 作者, 书名, 年份, 版次, 出版地: 出版单位, 起止页码
+  \bibitem{r3} 邓建松等, 《\LaTeXe~科技排版指南》, 科学出版社
+  \bibitem{aloft} 吴凌云, 《CTeX~FAQ (常见问题集)》, \textit{Version~0.4}, June 21, 2004
+  \bibitem{Mathmode} Herbert Vo\ss, Mathmode,
+    \href{http://perce.de/LaTeX/math/}
+     {\texttt{http://perce.de/LaTeX/math/}}
+
+\end{thebibliography}
+
+%\bibliography{BIBbase/demo}
+%%----------------------索引------------------------------
+\printindex
+%%-----------------------\backmatter----------------------
+\renewcommand{\baselinestretch}{1.4} \small\normalsize
+\include{backmatter} %%%致谢、作品列表．
+
+
+\end{document}

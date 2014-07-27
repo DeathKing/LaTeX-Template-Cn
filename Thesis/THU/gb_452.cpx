@@ -1,0 +1,218 @@
+% This is the file GB.cap of the CJK package
+%   for using Asian logographs (Chinese/Japanese/Korean) with LaTeX2e
+%
+% created by aloft <aloft@ctex.org> for Standard LaTeX document class.
+%
+% Version 4.5.2 (18-May-2003)
+%
+% $Id: GB.cpx,v 1.7 2003/05/20 15:51:14 aloft Exp $
+%
+
+
+\def\fileversion{4.5.2}
+\def\filedate{2003/05/18}
+\ProvidesFile{GB.cap}[\filedate\space\fileversion
+ for Standard LaTeX document class]
+
+
+% Chinese captions
+%
+% character set: GB 2312-80
+% encoding: EUC
+
+\@ifundefined{CJKnumber}
+  {\def\CJKnumber#1{\ifcase#1\or
+                    一\or二\or三\or四\or五\or
+                    六\or七\or八\or九\or十\or十一\fi}}{}
+
+\renewcommand\contentsname{目录}
+\renewcommand\listfigurename{插图}
+\renewcommand\listtablename{表格}
+
+\@ifundefined{chapter}
+  {\renewcommand\refname{参考文献}}
+  {\renewcommand\bibname{参考文献}}
+
+\renewcommand\indexname{索引}
+
+\renewcommand\figurename{图}
+
+\renewcommand\tablename{表}
+
+\newcommand\CJKprepartname{第}
+\newcommand\CJKpartname{部分}
+\newcommand\CJKthepart{\CJKnumber{\@arabic\c@part}}
+
+\@ifundefined{chapter}{}{
+  \newcommand\CJKprechaptername{第}
+  \newcommand\CJKchaptername{章}
+  \newcommand\CJKthechapter{\CJKnumber{\@arabic\c@chapter}}}
+
+\renewcommand\appendixname{附录~\@Alph\c@chapter}
+
+\@ifundefined{mainmatter}
+  {\renewcommand\abstractname{摘要}}{}
+
+% \renewcommand\ccname{}                     %   ?
+% \renewcommand\enclname{附件}
+% \newcommand\prepagename{}                  %   ?
+% \newcommand\postpagename{}                 %   ?
+% \renewcommand\headtoname{}                 %   ?
+% \renewcommand\seename{}                    %   ?
+
+\let\CJK@todaysave=\today
+\def\CJK@todaysmall{~\the\year~年~\the\month~月~\the\day~日}
+\def\CJK@todaybig{\CJKdigits{\the\year}年\CJKnumber{\the\month}月\CJKnumber{\the\day}日}
+\def\CJK@today{\CJK@todaysmall}
+\renewcommand\today{\CJK@today}
+\newcommand\CJKtoday[1][1]{%
+  \ifcase#1\def\CJK@today{\CJK@todaysave}
+  \or\def\CJK@today{\CJK@todaysmall}
+  \or\def\CJK@today{\CJK@todaybig}
+  \fi}
+
+%
+% modify the definitions of Standard LaTeX document class
+%
+\@ifundefined{chapter}{
+  \def\@part[#1]#2{%
+      \ifnum \c@secnumdepth >\m@ne
+        \refstepcounter{part}%
+%       \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+        \addcontentsline{toc}{part}{\CJKprepartname\expandafter\noexpand\CJKthepart\CJKpartname\hspace{1em}#1}%
+      \else
+        \addcontentsline{toc}{part}{#1}%
+      \fi
+      {\parindent \z@ \raggedright
+       \interlinepenalty \@M
+       \normalfont
+       \ifnum \c@secnumdepth >\m@ne
+%        \Large\bfseries \partname\nobreakspace\thepart
+         \Large\bfseries \CJKprepartname\CJKthepart\CJKpartname
+         \par\nobreak
+       \fi
+       \huge \bfseries #2%
+       \markboth{}{}\par}%
+      \nobreak
+      \vskip 3ex
+      \@afterheading}
+}{
+  \def\@part[#1]#2{%
+      \ifnum \c@secnumdepth >-2\relax
+        \refstepcounter{part}%
+%       \addcontentsline{toc}{part}{\thepart\hspace{1em}#1}%
+        \addcontentsline{toc}{part}{\CJKprepartname\expandafter\noexpand\CJKthepart\CJKpartname\hspace{1em}#1}%
+      \else
+        \addcontentsline{toc}{part}{#1}%
+      \fi
+      \markboth{}{}%
+      {\centering
+       \interlinepenalty \@M
+       \normalfont
+       \ifnum \c@secnumdepth >-2\relax
+%        \huge\bfseries \partname\nobreakspace\thepart
+         \huge\bfseries \CJKprepartname\CJKthepart\CJKpartname
+         \par
+         \vskip 20\p@
+       \fi
+       \Huge \bfseries #2\par}%
+      \@endpart}
+  \if@twoside
+    \def\chaptermark#1{%
+      \markboth {\MakeUppercase{%
+        \ifnum \c@secnumdepth >\m@ne
+          \if@mainmatter
+%           \@chapapp\ \thechapter. \ %
+            \CJKprechaptername\CJKthechapter\CJKchaptername \ %
+          \fi
+        \fi
+        #1}}{}}%
+    \def\sectionmark#1{%
+      \markright {\MakeUppercase{%
+        \ifnum \c@secnumdepth >\z@
+%         \thesection. \ %
+          \thesection \ %
+        \fi
+        #1}}}
+  \else
+    \def\chaptermark#1{%
+      \markright {\MakeUppercase{%
+        \ifnum \c@secnumdepth >\m@ne
+          \if@mainmatter
+%           \@chapapp\ \thechapter. \ %
+            \CJKprechaptername\CJKthechapter\CJKchaptername \ %
+          \fi
+        \fi
+        #1}}}
+  \fi
+  \def\@chapter[#1]#2{\ifnum \c@secnumdepth >\m@ne
+                         \if@mainmatter
+                           \refstepcounter{chapter}%
+%                          \typeout{\@chapapp\space\thechapter.}%
+                           \typeout{\CJKprechaptername\CJKthechapter\CJKchaptername}%
+                           \addcontentsline{toc}{chapter}%
+%                                    {\protect\numberline{\thechapter}#1}%
+                                     {\protect\numberline{}\CJKprechaptername%
+                                      \expandafter\noexpand\CJKthechapter\CJKchaptername\hspace{0.8em}#1}%
+                         \else
+                           \addcontentsline{toc}{chapter}{#1}%
+                         \fi
+                      \else
+                        \addcontentsline{toc}{chapter}{#1}%
+                      \fi
+                      \chaptermark{#1}%
+                      \addtocontents{lof}{\protect\addvspace{10\p@}}%
+                      \addtocontents{lot}{\protect\addvspace{10\p@}}%
+                      \if@twocolumn
+                        \@topnewpage[\@makechapterhead{#2}]%
+                      \else
+                        \@makechapterhead{#2}%
+                        \@afterheading
+                      \fi}
+  \def\@makechapterhead#1{%
+    \vspace*{50\p@}%
+    {\parindent \z@ \raggedright \normalfont
+      \ifnum \c@secnumdepth >\m@ne
+        \if@mainmatter
+%         \huge\bfseries \@chapapp\space \thechapter
+          \huge\bfseries \CJKprechaptername\CJKthechapter\CJKchaptername
+          \par\nobreak
+          \vskip 20\p@
+        \fi
+      \fi
+      \interlinepenalty\@M
+      \Huge \bfseries #1\par\nobreak
+      \vskip 40\p@
+    }}
+  \renewcommand*\l@chapter[2]{%
+    \ifnum \c@tocdepth >\m@ne
+      \addpenalty{-\@highpenalty}%
+      \vskip 1.0em \@plus\p@
+%     \setlength\@tempdima{1.5em}%
+      \setlength\@tempdima{0em}%
+      \begingroup
+        \parindent \z@ \rightskip \@pnumwidth
+        \parfillskip -\@pnumwidth
+        \leavevmode \bfseries
+        \advance\leftskip\@tempdima
+        \hskip -\leftskip
+        #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+        \penalty\@highpenalty
+      \endgroup
+    \fi}
+\let\@appendix\appendix
+\renewcommand\appendix{\@appendix%
+  \def\CJKprechaptername{\relax}%
+  \def\CJKthechapter{\relax}%
+  \def\CJKchaptername{\appendixname}}
+}  %end of \@ifundefined{chapter}
+
+\def\numberline#1{\ifdim\@tempdima>0pt% 
+  \settowidth\@tempdimb{#1\space}% 
+  \ifdim\@tempdima<\@tempdimb% 
+    \@tempdima=\@tempdimb% 
+  \fi% 
+  \hb@xt@\@tempdima{#1\hfil}% 
+  \fi} 
+
+\endinput

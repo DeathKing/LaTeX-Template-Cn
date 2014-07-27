@@ -1,0 +1,479 @@
+%论文版芯大小一般应为145mm×210mm（包括页眉及页码则为145mm×230mm）
+%页码在版芯下边线之下隔行居中放置；
+%% 左右
+\setlength{\textwidth}{14.5cm}
+\setlength{\oddsidemargin}{0.71cm}   % 左边 3.25cm=0.71+2.54
+\setlength{\evensidemargin}{0.71cm}
+%  上下
+\setlength{\topmargin}{0.42cm}       % 3.3=2.54+0.76
+\setlength{\headheight}{0.80cm}      % 0.8
+\setlength{\headsep}{0.40cm}         % 0.4
+\setlength{\textheight}{21.0cm}     % 21.0
+\setlength{\footskip}{1.1cm}        %1.1
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%允许公式换页显示,否则大型推导公式都在一页内，
+%一页显示不下放到第二页，导致很大的空白空间，很不好看
+\allowdisplaybreaks[4]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%下面这组命令使浮动对象的缺省值稍微宽松一点，从而防止幅度
+%对象占据过多的文本页面，也可以防止在很大空白的浮动页上放置很小的图形。
+\renewcommand{\topfraction}{0.9999999}
+\renewcommand{\textfraction}{0.0000001}
+\renewcommand{\floatpagefraction}{0.9999}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 重定义字体命令
+% 注意win2000,没有 simsun,　最好到网上找一个
+% 一些字体是office2000 带的
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\song}{\CJKfamily{song}}    % 宋体   (Windows自带simsun.ttf)
+\newcommand{\fs}{\CJKfamily{fs}}        % 仿宋体 (Windows自带simfs.ttf)
+\newcommand{\kai}{\CJKfamily{kai}}      % 楷体   (Windows自带simkai.ttf)
+\newcommand{\hei}{\CJKfamily{hei}}      % 黑体   (Windows自带simhei.ttf)
+\newcommand{\li}{\CJKfamily{li}}        % 隶书   (Windows自带simli.ttf)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 重定义字号命令
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\yihao}{\fontsize{26pt}{26pt}\selectfont}       % 一号, 1.倍行距
+\newcommand{\erhao}{\fontsize{22pt}{22pt}\selectfont}       % 二号, 1.倍行距
+\newcommand{\xiaoer}{\fontsize{18pt}{18pt}\selectfont}      % 小二, 单倍行距
+\newcommand{\sanhao}{\fontsize{16pt}{16pt}\selectfont}      % 三号, 1.倍行距
+\newcommand{\xiaosan}{\fontsize{15pt}{15pt}\selectfont}     % 小三, 1.倍行距
+\newcommand{\sihao}{\fontsize{14pt}{14pt}\selectfont}       % 四号, 1.0倍行距
+\newcommand{\banxiaosi}{\fontsize{13pt}{13pt}\selectfont}   % 半小四, 1.0倍行距
+\newcommand{\xiaosi}{\fontsize{12pt}{12pt}\selectfont}      % 小四, 1.倍行距
+\newcommand{\dawuhao}{\fontsize{11.5pt}{11.5pt}\selectfont} % 大五号, 单倍行距
+\newcommand{\wuhao}{\fontsize{10.5pt}{10.5pt}\selectfont}   % 五号, 单倍行距
+\newcommand{\xiaowu}{\fontsize{9.5pt}{9.5pt}\selectfont}    % 五号, 单倍行距
+\newcommand{\banbanxiaosi}{\fontsize{12pt}{12pt}\selectfont}% 半半小四, 1.0倍行距
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 重定义一些正文相关标题
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{plain} \theorembodyfont{\song\rmfamily}
+\theoremheaderfont{\hei\rmfamily} \theoremseparator{:}
+\newtheorem{definition}{\hei 定义}[chapter]
+\newtheorem{proposition}[definition]{\hei 命题}
+\newtheorem{lemma}[definition]{\hei 引理}
+\newtheorem{theorem}{\hei 定理}[chapter]
+\newtheorem{axiom}{\hei 公理}
+\newtheorem{corollary}[definition]{\hei 推论}
+\newtheorem{exercise}[definition]{}
+
+\theoremheaderfont{\CJKfamily{hei}\rmfamily}\theorembodyfont{\rmfamily}
+\theoremstyle{nonumberplain} \theoremseparator{:}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%解决原proof定理环境的两个问题：
+%  1. proof 中的item缩进不对
+%  2. proof 中的最后一个公式下出现一个黑方块。
+%\theoremsymbol{$\blacksquare$}
+%\newtheorem{proof}{\hei 证明}
+\newenvironment{proof}{\noindent{\hei 证明：}}{\hfill $ \square $ \vskip 4mm}
+\theoremsymbol{$\square$}
+\newtheorem{example}{\hei 例}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 用于中文段落缩进 和正文版式
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\CJKcaption{GB_aloft}
+\CJKcaption{gb_452}
+
+\newlength \CJKtwospaces
+
+\def\CJKindent{
+    \settowidth\CJKtwospaces{\CJKchar{"0A1}{"0A1}\CJKchar{"0A1}{"0A1}}%
+    \parindent\CJKtwospaces
+}
+
+\CJKtilde  \CJKindent
+
+\setlength{\parindent}{26pt} %由于工大论文的每行的字距加大了，需要增加段首缩2pt
+
+\renewcommand\contentsname{\hei 目~~~~录}
+
+%%%%%%章节标题为“第1章”的形式
+\renewcommand\chaptername{\CJKprechaptername~\thechapter~\CJKchaptername}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%定义段落章节的标题和目录项的格式
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setcounter{secnumdepth}{4} \setcounter{tocdepth}{2}
+
+\titleformat{\chapter}[hang]{\xiaoer\bf\filcenter\hei}{\xiaoer\chaptertitlename}{18pt}{\xiaoer}
+\titlespacing{\chapter}{0pt}{8pt}{16pt}
+
+\titleformat{\section}[hang]{\hei\sf\xiaosan}{\xiaosan\thesection}{0.5em}{}
+\titlespacing{\section}{0pt}{13pt}{13pt}
+
+\titleformat{\subsection}[hang]{\hei\sf\sihao}{\sihao\thesubsection}{0.5em}{}
+\titlespacing{\subsection}{0pt}{8pt}{7pt}
+
+\titleformat{\subsubsection}[runin]{\hei\sf\xiaosi}{\thesubsubsection}{0.5em}{}[\;\;]
+\titlespacing{\subsubsection}{0pt}{3pt}{2pt}
+
+% 按工大标准, 缩小目录中各级标题之间的缩进，使它们相隔一个字符距离，也就是12pt
+\makeatletter
+\renewcommand*\l@chapter{\@dottedtocline{1}{0em}{0.0em}}
+\renewcommand*\l@section{\@dottedtocline{1}{12pt}{12pt}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{24pt}{24pt}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{36pt}{36pt}}
+\renewcommand*\l@paragraph{\@dottedtocline{4}{48pt}{48pt}}
+\renewcommand*\l@subparagraph{\@dottedtocline{5}{60pt}{60pt}}
+\makeatother
+\dottedcontents{chapter}[0.0em]{\hei \vspace{0.5em}}{0.0em}{5pt}
+\dottedcontents{section}[1.16cm]{}{1.8em}{5pt}
+\dottedcontents{subsection}[2.00cm]{}{2.7em}{5pt}
+\dottedcontents{subsubsection}[2.86cm]{}{3.4em}{5pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义页眉和页脚 使用fancyhdr 宏包
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\makeheadrule}{%
+\makebox[-3pt][l]{\rule[.7\baselineskip]{\headwidth}{0.4pt}}
+\rule[0.85\baselineskip]{\headwidth}{2.25pt}\vskip-.8\baselineskip}
+\makeatletter
+\renewcommand{\headrule}{%
+    {\if@fancyplain\let\headrulewidth\plainheadrulewidth\fi
+     \makeheadrule}}
+
+\pagestyle{fancyplain}
+
+%去掉章节标题中的数字
+%%不要注销这一行，否则页眉会变成：“第1章1  绪论”样式
+\renewcommand{\chaptermark}[1]{\markboth{\chaptertitlename~~ \ #1}{}}
+ \fancyhf{}
+
+%在book文件类别下,\leftmark自动存录各章之章名,\rightmark记录节标题
+%% 页眉字号 工大要求 小五
+\fancyhead[CO]{\CJKfamily{song}\xiaowu\leftmark}
+\fancyhead[CE]{\CJKfamily{song}\xiaowu哈尔滨工业大学工学博士学位论文 }%
+\fancyfoot[C,C]{\xiaowu--~\thepage~--}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 设置行距和段落间垂直距离
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\CJKglue}{\hskip 0.3pt plus 0.08\baselineskip}%加大字间距，使每行33个字
+%\setlength{\belowcaptionskip}{10pt}   % 加大标题和表格之间的距离
+\setlength{\parskip}{3pt plus1pt minus1pt} % 段落之间的竖直距离
+\renewcommand{\baselinestretch}{1.2}% 定义行距
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 调整列表环境的垂直间距
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\let\orig@Itemize =\itemize
+\let\orig@Enumerate =\enumerate
+\let\orig@Description =\description
+\def\Myspacing{\itemsep=1.5ex \topsep=-0.5ex \partopsep=0pt \parskip=0pt \parsep=0.5ex \itemindent=1.5cm \listparindent=1.5cm}
+\def\newitemsep{
+\renewenvironment{itemize}{\orig@Itemize\Myspacing}{\endlist}
+\renewenvironment{enumerate}{\orig@Enumerate\Myspacing}{\endlist}
+\renewenvironment{description}{\orig@Description\Myspacing}{\endlist}
+}
+
+\def\olditemsep{
+\renewenvironment{itemize}{\orig@Itemize}{\endlist}
+\renewenvironment{enumerate}{\orig@Enumerate}{\endlist}
+\renewenvironment{description}{\orig@Description}{\endlist}
+}
+
+\newitemsep
+
+\renewcommand\@biblabel[1]{#1\hspace{0.5em}} %去除参考文献里标号两边的括号
+\newcommand{\ucite}[1]{$^{\mbox{\scriptsize \cite{#1}}}$} % 增加 \ucite 命令使显示的引用为上标形式
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定制浮动图形和表格标题样式
+\renewcommand{\captionfont}{\CJKfamily{song}\rmfamily}
+\renewcommand{\captionlabelfont}{\CJKfamily{song}\rmfamily}
+\renewcommand{\captionlabeldelim}{~}
+\renewcommand{\captionfont}{\wuhao}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义题头格言的格式
+% 用法 \begin{Aphorism}{author}
+%         aphorism
+%      \end{Aphorism}
+\newsavebox{\AphorismAuthor}
+\newenvironment{Aphorism}[1]
+{\vspace{0.5cm}\begin{sloppypar} \slshape
+\sbox{\AphorismAuthor}{#1}
+\begin{quote}\small\itshape }
+{\\ \hspace*{\fill}------\hspace{0.2cm} \usebox{\AphorismAuthor}
+\end{quote}
+\end{sloppypar}\vspace{0.5cm}}
+
+%自定义一个空命令，用于注释掉文本中不需要的部分。
+\newcommand{\comment}[1]{}
+
+\renewcommand\contentsname{\hei 目~~~~录}
+
+%%%%%%将章标题中的中文数字（一、二、三）变为阿拉伯数字(1,2,3)
+\renewcommand\CJKthechapter{%\CJKnumber
+{\@arabic\c@chapter}}
+
+%%%%%%不要拉大行距使得页面充满
+\raggedbottom
+
+% This is the flag for longer version
+\newcommand{\longer}[2]{#1}
+
+\newcommand{\ds}{\displaystyle}
+
+% define graph scale
+\def\gs{1.0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 自定义项目列表标签及格式 \begin{hitlist} 列表项 \end{hitlist}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{hitctr} %自定义新计数器
+\newenvironment{hitlist}{%%%%%定义新环境
+\begin{list}{{\hei (\arabic{hitctr})}} %%标签格式
+    {
+     \usecounter{hitctr}
+     \setlength{\leftmargin}{0cm}     %左边界
+     \setlength{\parsep}{0ex}         %段落间距
+     \setlength{\topsep}{0pt}         %列表到上下文的垂直距离
+     \setlength{\itemsep}{0ex}        %标签间距
+     \setlength{\labelsep}{0.3em}     %标号和列表项之间的距离,默认0.5em
+     \setlength{\itemindent}{46pt}    %标签缩进量
+     \setlength{\listparindent}{27pt} %段落缩进量
+    }}
+{\end{list}}%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 自定义项目列表标签及格式 \begin{publist} 列表项 \end{publist}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{pubctr} %自定义新计数器
+\newenvironment{publist}{%%%%%定义新环境
+\begin{list}{\arabic{pubctr}} %%标签格式
+    {
+     \usecounter{pubctr}
+     \setlength{\leftmargin}{2em}     % 左边界 \leftmargin =\itemindent + \labelwidth + \labelsep
+     \setlength{\itemindent}{0em}     % 标号缩进量
+     \setlength{\labelwidth}{1em}     % 标号宽度
+     \setlength{\labelsep}{1em}       % 标号和列表项之间的距离,默认0.5em
+     \setlength{\rightmargin}{0em}    % 右边界
+     \setlength{\topsep}{0ex}         % 列表到上下文的垂直距离
+%     \setlength{\partopsep}{0ex}      % 列表是一个新的段落时，加的额外到上下文的距离
+     \setlength{\parsep}{0ex}         % 段落间距
+     \setlength{\itemsep}{0ex}        % 标签间距
+     \setlength{\listparindent}{26pt} % 段落缩进量
+    }}
+{\end{list}}%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 默认字体
+\def\defaultfont{\renewcommand{\baselinestretch}{1.37}
+\fontsize{12.1pt}{13pt}\selectfont}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 封面、摘要、版权、致谢格式定义
+\def\ctitle#1{\def\@ctitle{#1}}\def\@ctitle{}
+\def\cdegree#1{\def\@cdegree{#1}}\def\@cdegree{}
+\def\caffil#1{\def\@caffil{#1}}\def\@caffil{}
+\def\csubject#1{\def\@csubject{#1}}\def\@csubject{}
+\def\cauthor#1{\def\@cauthor{#1}}\def\@cauthor{}
+\def\csupervisor#1{\def\@csupervisor{#1}}\def\@csupervisor{}
+\def\cassosupervisor#1{\def\@cassosupervisor{~ & 副\hfill导\hfill师 & ：& #1\\}}\def\@cassosupervisor{}
+\def\ccosupervisor#1{\def\@ccosupervisor{~ & 联\hfill合\hfill导\hfill师 & ：& #1\\}}\def\@ccosupervisor{}
+\def\cdate#1{\def\@cdate{#1}}\def\@cdate{}
+\long\def\cabstract#1{\long\def\@cabstract{#1}}\long\def\@cabstract{}
+\def\ckeywords#1{\def\@ckeywords{#1}}\def\@ckeywords{}
+
+\def\etitle#1{\def\@etitle{#1}}\def\@etitle{}
+\def\edegree#1{\def\@edegree{#1}}\def\@edegree{}
+\def\eaffil#1{\def\@eaffil{#1}}\def\@eaffil{}
+\def\esubject#1{\def\@esubject{#1}}\def\@esubject{}
+\def\eauthor#1{\def\@eauthor{#1}}\def\@eauthor{}
+\def\esupervisor#1{\def\@esupervisor{#1}}\def\@esupervisor{}
+%\def\eassosupervisor#1{\def\@eassosupervisor{#1}}\def\@eassosupervisor{}
+\def\eassosupervisor#1{\def\@eassosupervisor{~ & Associate Supervisor: & #1\\}}\def\@eassosupervisor{}
+%\def\ecosupervisor#1{\def\@ecosupervisor{#1}}\def\@ecosupervisor{}
+\def\ecosupervisor#1{\def\@ecosupervisor{~ & Co Supervisor: & #1\\}}\def\@ecosupervisor{}
+\def\edate#1{\def\@edate{#1}}\def\@edate{}
+\long\def\eabstract#1{\long\def\@eabstract{#1}}\long\def\@eabstract{}
+\def\ekeywords#1{\def\@ekeywords{#1}}\def\@ekeywords{}
+\def\natclassifiedindex#1{\def\@natclassifiedindex{#1}}\def\@natclassifiedindex{}
+\def\internatclassifiedindex#1{\def\@internatclassifiedindex{#1}}\def\@internatclassifiedindex{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义封面
+\def\makecover{
+    %%%%%%%%%%%%%封面一
+    \begin{titlepage}
+    \begin{center}
+
+    \parbox[t][1cm][b]{\textwidth}{\erhao
+    \begin{center} {\song  博士学位论文 }\end{center} }
+
+    \parbox[t][0.8cm][t]{\textwidth}{
+    \begin{center} \end{center} }
+
+    \parbox[t][2cm][t]{\textwidth}{\erhao
+    \begin{center} {\hei  \@ctitle}\end{center} }
+
+    \parbox[t][3.8cm][t]{\textwidth}{\erhao
+    \begin{center} {\hei  \@etitle}\end{center} }
+
+    \parbox[t][2.0cm][t]{\textwidth}{\sanhao
+    \begin{center} {\song  \@cauthor}  \end{center} }
+
+    \parbox[t][8.5cm][t]{\textwidth}{\centering
+        \includegraphics[width = 8cm]{hit_logo}}
+
+    \parbox[t][1.2cm][t]{\textwidth}{\xiaoer
+    \begin{center} {\kai  哈尔滨工业大学}  \end{center} }
+
+    \parbox[t][0.5cm][t]{\textwidth}{
+    \begin{center} {\song \sanhao \@cdate} \end{center} }
+
+    \end{center}
+
+    % 封二 空白页
+    \newpage
+    ~~~\vspace{1em}
+    \thispagestyle{empty}
+
+    %内封
+    \newpage
+    \thispagestyle{empty}
+    \begin{center}
+    \parbox[t][0.6cm][t]{\textwidth}{
+    \begin{center} \end{center}}
+
+    \parbox[t][2.2cm][t]{\textwidth}{
+    \song \xiaosi 国内图书分类号： \@natclassifiedindex \\
+                  国际图书分类号： \@internatclassifiedindex }
+
+    \parbox[t][2.7cm][b]{\textwidth}{\xiaoer
+    \begin{center} {\song  \@cdegree学位论文 }\end{center} }
+
+    \setlength{\baselineskip}{1.5\baselineskip}
+    \parbox[t][3.0cm][b]{\textwidth}{\erhao
+    \begin{center} {\hei  \@ctitle}\end{center} }
+
+    \parbox[t][5.3cm][t]{\textwidth}{
+    \begin{center}  \end{center} }
+
+    \parbox[t][6cm][c]{\textwidth}{ {\sihao
+    \begin{center} \song
+    \begin{tabular}{lll@{\extracolsep{0em}}l}
+    ~ & {\hei 博\hfill士\hfill研究生：}           & \@cauthor\\
+    ~ & {\hei 导\hfill师：}                       & \@csupervisor\\
+    \@ccosupervisor
+    \@cassosupervisor
+    ~ & {\hei 申\hfill请\hspace{1em}学\hfill位：} & \@cdegree\\
+    ~ & {\hei 学\hfill科、专\hfill业：}           & \@csubject\\
+    ~ & {\hei 所\hfill在\hspace{1em}单\hfill位：} & \@caffil\\
+    ~ & {\hei 答\hfill辩\hspace{1em}日\hfill期：} & \@cdate\\
+    ~ & {\hei 授予学位单位：}                     & 哈尔滨工业大学
+    \end{tabular}
+    \end{center} } }
+\end{center}
+
+%%%%%%增加一空白页
+  \newpage
+    ~~~\vspace{1em}
+    \thispagestyle{empty}
+
+    % 英文封面
+    \newpage
+
+    \thispagestyle{empty}
+
+    \begin{center}
+
+    \parbox[t][0.6cm][t]{\textwidth}{
+    \begin{center} \end{center}}
+
+    \parbox[t][2.2cm][t]{\textwidth}{
+    \xiaosi Domestic Classified Index: \@natclassifiedindex \\
+                  U.D.C.:  \@internatclassifiedindex }
+
+    \parbox[t][2.7cm][b]{\textwidth}{\xiaoer
+
+    \begin{center} {  Dissertation for the Doctoral Degree in Engineering}\end{center} }
+
+    \parbox[t][3.0cm][b]{\textwidth}{\erhao
+    \begin{center} {  \@etitle}\end{center} }
+
+    \parbox[t][4.0cm][t]{\textwidth}{
+    \begin{center}  \end{center} }
+
+    \parbox[t][6cm][c]{\textwidth}{ {\sihao
+    \begin{center}
+    \begin{tabular}{p{0cm}p{14em}l@{\extracolsep{2em}}l}
+    ~ & \textbf{Candidate:}                     &  \@eauthor\\
+    ~ & \textbf{Supervisor:}                    &  \@esupervisor\\
+    \@ecosupervisor
+    \@eassosupervisor
+    ~ & \textbf{Academic Degree Applied for:}   &  \@edegree\\
+    ~ & \textbf{Specialty:}                     & Microelectronics \hfill and \hfill Solid-State \\
+    ~ &                                         & Electronics\\
+    ~ & \textbf{Affiliation:}                   & Dept. of Microelectronics Science \\
+    ~ &                                         & and Technology\\ %\@esubject\\
+    ~ & \textbf{Date of Defence:}               &  \@edate\\
+    ~ & \textbf{Degree-Conferring-Institution:} &  Harbin Institute of Technology
+    \end{tabular}
+    \end{center}}}
+
+    \end{center}
+
+    \end{titlepage}
+
+%%%%%%增加一空白页
+  \newpage
+    ~~~\vspace{1em}
+    \thispagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%   Abstract and keywords  %%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\BiAppendixChapter{摘~~~~要}{Abstract (in Chinese)}
+\setcounter{page}{1}
+\song \normalsize
+\defaultfont
+\@cabstract
+\vspace{1em}
+
+\noindent
+{\hei 关键词} \quad \@ckeywords
+
+%%%%%%%%%%%%%%%%%%%   English Abstract  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\defaultfont
+\BiAppendixChapter{\textbf{Abstract}}{Abstract (in English)}
+\@eabstract
+\vspace{1em}
+
+\noindent
+{\textbf{Keywords}} \quad \@ekeywords
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 英文目录格式
+\makeatletter
+\def\@dotsep{1}           % 定义英文目录的点间距
+\setlength\leftmargini {0pt}
+\setlength\leftmarginii {0pt}
+\setlength\leftmarginiii {0pt}
+\setlength\leftmarginiv {0pt}
+\setlength\leftmarginv {0pt}
+\setlength\leftmarginvi {0pt}
+
+\def\engcontentsname{\bfseries Contents}
+\newcommand\tableofengcontents{%
+   \if@twocolumn
+     \@restonecoltrue\onecolumn
+   \else
+     \@restonecolfalse
+   \fi
+   \chapter*{\engcontentsname
+       \@mkboth{%
+          \engcontentsname}{\engcontentsname}}
+   \@starttoc{toe}%
+   \if@restonecol\twocolumn\fi
+   }
+\makeatother

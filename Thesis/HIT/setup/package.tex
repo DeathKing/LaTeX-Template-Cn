@@ -1,0 +1,90 @@
+% 图形支持宏包 为了使用pdftex 需要作相应判断
+
+%定义一个新判断命令
+\newif\ifpdf
+\ifx\pdfoutput\undefined
+   \pdffalse
+ \else
+   \pdfoutput=1
+   \pdftrue
+ \fi
+
+%%%%%%%彩色引用和书签%%%%%%
+\ifpdf
+\usepackage[pdftex]{graphicx}
+\else
+\usepackage[dvips]{graphicx}
+\fi
+
+\usepackage[%paperwidth=18.4cm, paperheight= 26cm,  % 版面控制宏包，定义规定的版面尺寸
+            body={14.5true cm,21true cm},           %论文版芯145mm×210mm（包括页眉及页码则为145mm×230mm）
+            twosideshift=0 pt,                      %页码在版芯下边线之下隔行居中放置；
+            %headheight=1.0true cm
+            ]{geometry}
+\usepackage{layouts}                    % 打印当前页面格式的宏包
+\usepackage[sf]{titlesec}               % 控制标题的宏包
+\usepackage{titletoc}                   % 控制目录的宏包
+\usepackage[perpage,symbol]{footmisc}   % 脚注控制
+\usepackage{fancyhdr}                   % fancyhdr宏包 页眉和页脚的相关定义
+\usepackage{fancyref}
+
+\usepackage{CJK}            % 中文支持宏包
+\usepackage{type1cm}        % tex1cm宏包，控制字体的大小
+\usepackage{times}          % 使用Times字体的宏包
+\usepackage{indentfirst}    % 首行缩进宏包
+\usepackage{color}          % 支持彩色
+
+\usepackage{amsmath}        % AMSLaTeX宏包 用来排出更加漂亮的公式
+\usepackage{amssymb}
+\usepackage{mathrsfs}       % 不同于\mathcal or \mathfrak 之类的英文花体字体
+\usepackage{bm}             % 处理数学公式中的黑斜体的宏包
+\usepackage[amsmath,thmmarks]{ntheorem}% 定理类环境宏包，其中 amsmath 选项用来兼容 AMS LaTeX 的宏包
+
+\usepackage{epsfig}         % eps图像
+\usepackage[below]{placeins}%允许上一个section的浮动图形出现在下一个section的开始部分,还提供\FloatBarrier命令,使所有未处理的浮动图形立即被处理
+%\usepackage{psfrag}        %替换eps图形中的文字
+\usepackage{floatflt}       % 图文混排用宏包
+\usepackage{rotating}       % 图形和表格的控制
+%\usepackage{endfloat}      %可将浮动对象放置到文件的最后
+\usepackage{setspace}       % 定制表格和图形的多行标题行距
+%\usepackage{flafter}       % 防止图形浮动到当前页的顶部，以免它出现在它所在文本的前面.
+\usepackage{array}          %增强表格的功能
+\usepackage{multirow}       %使用Multirow宏包，使得表格可以合并多个row格
+\usepackage[centerlast]{caption2}       %浮动图形和表格标题样式
+\usepackage[hang, centerlast]{subfigure}%支持子图
+
+%\usepackage{cite}          % 支持引用的宏包
+\usepackage[sort&compress,numbers]{natbib}% 支持引用缩写的宏包
+\usepackage{hypernat}
+
+\usepackage{paralist}       %使用paralist宏包,改变列表项的格式
+\usepackage{calc}           %长度可以用+ - * / 进行计算
+
+% 生成有书签的pdf及其开关, 该宏包应放在所有宏包的最后, 宏包之间有冲突
+\def\a{true}
+\ifx\a\useyap
+\usepackage[dvipdf,
+            CJKbookmarks=true,
+            bookmarksnumbered=true,
+            bookmarksopen=true,
+            colorlinks=true,    % 最后打印的时候可以改成false，这样字体都是黑色
+            pdfborder=001,      % 去掉链接的边框
+            citecolor=blue,
+            linkcolor=red,
+            anchorcolor=green,
+            urlcolor=blue
+            ]{hyperref}
+\else
+\usepackage[dvipdfm,
+            CJKbookmarks=true,
+            bookmarksnumbered=true,
+            bookmarksopen=true,
+            colorlinks=false,   % 最后打印的时候可以改成false，这样字体都是黑色
+            pdfborder=001,      % 去掉链接的边框
+            citecolor=blue,
+            linkcolor=red,
+            anchorcolor=green,
+            urlcolor=blue
+            ]{hyperref}
+\AtBeginDvi{\special{pdf:tounicode GBK-EUC-UCS2}} % GBK -> Unicode
+\fi

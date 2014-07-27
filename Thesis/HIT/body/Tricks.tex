@@ -1,0 +1,241 @@
+\defaultfont
+
+\BiChapter{模板使用中的一些技巧}{Some Tricks of Using this Template}
+\label{Tricks}
+
+\BiSection{引言}{Introduction}
+\label{Tricks:Introduction}
+本章简单介绍使用本模板的一些技巧。\LaTeX~的基本概念、命令和操作参考相关资料\ucite{TEXGURU99,BEZOS02,SHELL02,OOSTRUM01}。
+
+\BiSection{中英文目录}{Chinese and English Contents}
+\label{Tricks:Contents}
+本文分别为章、节、小节和小小节定义了新命令：
+
+\begin{verb}
+\BiChapter、\BiSection、\BiSubsection和\BiSubsubsection
+\end{verb}
+
+对于附录中没有章标号的章，如结论等，也定义了一个相应的命令\verb"\BiAppendixChapter"。
+
+对于附录中有章标号的章，定义了一个相应的命令\verb"\BiAppChapter"。
+
+在这些命令中均含有两个参数，第一个为中文题目，第二个为英文题目。
+
+\BiSection{列表环境}{List Environment}
+
+本模版定义了hitlist和publist列表环境，请用这两个环境代替enumerate环境和itemize环境。
+
+使用方法请看例子：
+\begin{verbatim}
+\begin{hitlist}
+\item hitlist符合工大论文模板要求。
+\item publist环境用于发表文章等地方的使用，在正文中用不到。
+\end{hitlist}
+\end{verbatim}
+
+上面代码形成的效果如下：
+\begin{hitlist}
+\item hitlist符合工大论文模板要求。
+\item publist环境用于发表文章等地方的使用，在正文中用不到。
+\end{hitlist}
+
+
+\BiSection{参考文献}{Reference}
+模板中使用的是紫丁香网友Stanley提供的~chinesebst.bst。作了以下修改：
+\begin{hitlist}
+\item 修正了引用书籍不输出页码问题
+\item 修正了引用博士、硕士论文不输出页码的问题
+\item 修正了引用博士硕士论文的学校和学位类别颠倒的问题
+\item 引用书籍版次位置不正确的问题
+\item 使用缩写期刊名时吞掉"."问题
+\end{hitlist}
+
+还存在的问题：
+\begin{hitlist}
+\item 中文文献作者多于3个时输出的是et al 而不是``等''。在main.bbl文件中修改。
+\item 会议文献出现的是``2000, vol 2, 15--25'' 的形式，应该是``2000, 2:15--25''。这个也需要在main.bbl文件中修改。
+\end{hitlist}
+
+\BiSection{打印}{Print}
+\label{Tricks:Print}
+
+原UFO模版的彩色中文文字打印出来会比黑色文字要淡，并且发虚。
+而在打印时，即使选择``将所有文字打印成黑色''选项：
+打印设置~$\Rightarrow$~属性~$\Rightarrow$~详细资料~$\Rightarrow$~选择
+``将所有文字打印成黑色''。仍然不能解决这个问题，可能是打印系统将中文字符当作图形来打印的。
+
+为了使得打印版的论文美观，该模板的目录和公式图表的引用，参考文献的引用均修改为黑色。
+
+生成pdf打印时选项：Page Scaling(页面比例)选择none(无)，否则打印出来的
+稿件小一圈，正反面的页眉线也无法对齐。
+
+\BiSection{图表的中英文标题}{Chinese and English Caption of Figures and Tables}
+\label{Tricks:Captions}
+\BiSubsection{图标题}{Caption of Figures}
+模板中为图定义了双标题命令：
+\begin{verb}
+\FigureBiCaption{中文}{英文}
+\end{verb}
+该命令含有两个参数，第一个为中文标题，第二个为英文标题。
+图~\ref{Figure:Tricks:Example1}给出了一个中英文标题的例子。
+
+\begin{figure}
+\centering
+\includegraphics[width = 0.4\textwidth]{golfer}
+\FigureBiCaption{打高尔夫球的人}{Golfer}
+\label{Figure:Tricks:Example1}
+\end{figure}
+
+
+为子图定义了一个英文标题命令：
+\begin{verb}
+\SubfigureCaption{子图宽度}{英文}。
+\end{verb}
+在紧接着~subfigure~后面用这个命令，第一个参数是子图的宽度，第二个参数是英文标题。
+当一行不只一个子图时,将图放在~minipage~中，在~minipage~中用这个命令。
+
+图\ref{Figure:Tricks:Example2}给出了一行只有一个子图的例子。
+
+图\ref{Figure:Tricks:Example3}给出了一行有多个子图的例子。
+\begin{figure}
+\centering
+\subfigure[高尔夫１]{\label{Figure:Tricks:Example2:a}
+  \includegraphics[width = 0.22\textwidth]{golfer}
+}\\
+\SubfigureCaption{0.22\textwidth}{Golfer1}
+\\
+\subfigure[高尔夫２]{\label{Figure:Tricks:Example2:B}
+  \includegraphics[width = 0.22\textwidth]{golfer}
+}\\
+\SubfigureCaption{0.22\textwidth}{Golfer2}
+\FigureBiCaption{高尔夫}{Golf}
+\label{Figure:Tricks:Example2}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{minipage}{0.25\textwidth}
+\centering
+\subfigure[高尔夫１]{\label{Figure:Tricks:Example3:a}
+  \includegraphics[width = \textwidth]{golfer}
+}\\
+\SubfigureCaption{\textwidth}{Golfer1}
+\end{minipage}
+\begin{minipage}{0.25\textwidth}
+\centering
+\subfigure[高尔夫２]{\label{Figure:Tricks:Example3:B}
+  \includegraphics[width = \textwidth]{golfer}
+}\\
+\SubfigureCaption{\textwidth}{Golfer2}
+\end{minipage}
+\begin{minipage}{0.25\textwidth}
+\centering
+\subfigure[高尔夫3]{\label{Figure:Tricks:Example3:C}
+  \includegraphics[width = \textwidth]{golfer}
+}\\
+\SubfigureCaption{\textwidth}{Golfer3}
+\end{minipage}
+\FigureBiCaption{高尔夫}{Golf}
+\label{Figure:Tricks:Example3}
+\end{figure}
+
+\BiSubsection{表标题}{Caption of Tables}
+模板中分别为表定义了双标题命令：
+\verb"\TableBiCaption{中文}{英文}"。
+该命令含有两个参数，第一个为中文标题，第二个为英文标题。
+
+\begin{table}[htb]
+\centering
+\TableBiCaption{表格测试}{Test of Table}
+\label{Tricks:Tab1}
+\begin{tabular}{c|c|c}
+  \hline
+  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+  方法 & 精度~(\%) & 速度~(ms) \\
+  \hline
+  小波变换 & $99.8$ &  20\\
+  傅立叶变换 & $99.0$ & 30 \\
+  \hline
+\end{tabular}
+\end{table}
+
+
+\BiSection{公式}{Equations}
+\label{Tricks:Equations}
+
+文本中的数学符号和公式用下面的方法输入：
+
+天体力学问题所采取的一个最基本的模型就是通常所说的$N$体问题，即在一
+定条件下，所研究的天体被看成质点，$N$体问题最简单的就是二体问题。在一
+个天体系统中，$N$个天体往往包含$n$个大天体和$k$个小天体($N=n+k$)，其中
+$k$个小天体相对$n$个大天体而言小到对后者运动的影响几乎不用考虑，但$k$
+个小天体之间可能相距较近，它们之间的相互作用应予考虑，这就构成了限制
+性($n+k$)体问题。特别地，当$N=3,~n=2,~k=1$时，即通常所说的限制性三体问题。
+
+
+最基本的数学公式，带序号的：
+\begin{equation}
+\ddot{\mathbf{r}}=\mathbf{F}_{0}(r)+\mathbf{F}_{\varepsilon}(\mathbf{r},\dot{\mathbf{r}},t)
+\end{equation}
+
+这是一个不带序号的例子：
+\begin{displaymath}
+F_{\varepsilon}/F_{0}=O (\varepsilon)
+\end{displaymath}
+
+
+典型的公式加符号说明的例子：
+
+目标飞行器和追踪飞行器之间的相对运动方程为：
+\begin{equation}\label{eq:1}
+\ddot{\boldsymbol{\rho}}-\frac{\mu}{R_{t}^{3}}\left( 3\mathbf{R_{t}}\frac{\mathbf{R_{t}\rho}}{R_{t}^{2}}-\boldsymbol{\rho}\right)=\mathbf{a}
+\end{equation}
+其中：
+
+$\boldsymbol{\rho}$---追踪飞行器与目标飞行器之间的相对位置矢量；
+
+$\ddot{\boldsymbol{\rho}}$---追踪飞行器与目标飞行器之间的相对加速度；
+
+$\mathbf{a}$---推力所产生的加速度；
+
+$\mathbf{R}_{t}$---目标飞行器在惯性坐标系中的位置矢量；
+
+$\omega_{t}$---目标飞行器的轨道角速度；
+
+$\mathbf{g}=\frac{\mu}{R_{t}^{3}}\left(
+3\mathbf{R_{t}}\frac{\mathbf{R_{t}\rho}}{R_{t}^{2}}-\boldsymbol{\rho}\right)=\omega_{t}^{2}\frac{R_{t}}{p}\left(
+3\mathbf{R_{t}}\frac{\mathbf{R_{t}\rho}}{R_{t}^{2}}-\boldsymbol{\rho}\right)$---重力加速度，这里$p$是目标飞行器的轨道半通径；
+
+含有矩阵或者向量的公式：
+\begin{equation}\label{eq:rho}
+\dot{\boldsymbol{\rho}}=\left( \begin{array}{c}
+\dot{x}-\omega_{t}y\\\dot{y}+\omega_{t}x\\\dot{z}
+\end{array}\right) , \quad
+\ddot{\boldsymbol{\rho}}=\left( \begin{array}{c}
+\ddot{x}-2\omega_{t}\dot{y}-\omega_{t}^{2}x-\dot{\omega}_{t}y\\
+\ddot{y}+2\omega_{t}\dot{x}-\omega_{t}^{2}y+\dot{\omega}_{t}x\\
+\ddot{z}
+\end{array}\right)
+\end{equation}
+
+如果一行写不，可以折行：：
+
+{\setlength\arraycolsep{2pt}
+\begin{eqnarray}
+x & = & \left( x_{0}+\frac{2\dot{y}_{0}}{\omega_{t}}+\frac{4a_{x}}{\omega_{t}^{2}}\right) +2\left( \frac{2\dot{x}_{0}}{\omega_{t}}-3y_{0}-\frac{a_{y}}{\omega_{t}^{2}}\right) \sin (\omega_{t} t) \nonumber\\
+& & -2\left( \frac{\dot{y}_{0}}{\omega_{t}}+\frac{2a_{x}}{\omega_{t}^{2}}\right) \cos (\omega_{t} t)-\left( 3\dot{x}_{0}-6\omega_{t} y_{0}-\frac{2a_{y}}{\omega_{t}}\right) t-\frac{3a_{x}}{2}t^{2} \\
+y & = & \left( 4y_{0}-\frac{2\dot{x}_{0}}{\omega_{t}}+\frac{a_{y}}{\omega_{t}^{2}} \right) +\left( \frac{\dot{y}_{0}}{\omega_{t}}+\frac{2a_{x}}{\omega_{t}^{2}}\right) \sin (\omega_{t} t) \nonumber\\
+& & -\left( 3y_{0}-\frac{2\dot{x}_{0}}{\omega_{t}}+\frac{a_{y}}{\omega_{t}^{2}}\right) \cos (\omega_{t}t)-\frac{2a_{x}}{\omega_{t}}t \\
+z & = & \frac{\dot{z}_{0}}{\omega_{t}}\sin (\omega_{t}t)+\left( z_{0}-\frac{a_{x}}{\omega_{t}^{2}}\right)\cos (\omega_{t}t)+\frac{a_{z}}{\omega_{t}^{2}}
+\end{eqnarray}}
+
+
+当有连续多个公式时，不要每个公式都用~equation~环境，这样会使得公式之间的距离很大，
+推荐使用~align~环境。详情请看相应的文档。
+
+可以通过~\verb"\setlength\jot{距离}"~来设定公式之间的距离，默认为~3pt，该模板将其设定为~2.5ex。
+\begin{gather}
+\alpha + \beta = \gamma\\
+x^2+y^2=z^2\\
+E=mc^2
+\end{gather}

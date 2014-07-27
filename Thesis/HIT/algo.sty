@@ -1,0 +1,26 @@
+\newcounter{algorithmeligne}
+
+\newenvironment{algorithme}
+        {
+        \setcounter{algorithmeligne}{0}
+
+        \newcommand{\ITEM}{
+                \stepcounter{algorithmeligne}
+                {\footnotesize \arabic{algorithmeligne}.}\>
+                }
+        \newcommand{\lign}{\ITEM}
+        \begin{center}
+        \begin{tabular}{|c|}
+        \hline
+        \begin{minipage}{1cm}
+%        \scriptsize
+        \begin{tabbing}
+\hskip1cm\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\=\qquad\\\kill 
+        }
+        {
+        \end{tabbing}
+        \end{minipage}
+        \\\hline
+        \end{tabular}
+        \end{center}
+        }

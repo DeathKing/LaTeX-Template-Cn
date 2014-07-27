@@ -1,0 +1,81 @@
+\defaultfont
+
+\BiChapter{绪论}{Introduction}
+\label{Introduction}
+
+\BiSection{课题背景及意义}{The Background and Significance}
+\label{Introduction:background}
+\LaTeX~由于具有排版美观、对公式和图表的处理能力强大以及跨平台通用性强等优势，
+使得它在科技排版中的应用越来越广泛。
+
+\BiSection{有关说明}{Readme}
+\BiSubsection{软件环境}{Environment of Software}
+该模板在\LaTeX{}+CJK环境下均可正常编译，但在某些的软件环境下可能会遇到一
+些编译问题，因此建议使用我们推荐的软件环境：
+\begin{hitlist}
+\item WindowsNT/2000/XP+CTeX：CTeX是目前国内影响力最大的中文TeX社区，CTeX
+软件安装方便，集成了大多数常用的软件，如果不想考虑太多软件本身的问题
+而只想专注于论文的话，CTeX是个不错的选择，http://www.ctex.org是CTeX的主
+页，在这里可以获得最新的消息、关于TeX的帮助(CTeX论坛)和最新的软件；
+\item WindowsNT/2000/XP+ChinaTeX：ChinaTeX是又一中文TeX发行版，主要由李树钧
+博士(hooklee)维护，ChinaTeX是以iso形式发放的，除了TeX系统，还有一些非常
+有用的软件和资料。ChinaTeX的设计思路和CTeX有所不同，目前版本的采用MiKTeX
+Direct CD方式，用户有更多的自由去配置ChinaTeX。ChinaTeX的主页是
+http://www.chinatex.org，那里也有相关的论坛；
+\item Linux+TeXlive：TeXlive是一个著名的TeX发行版，支持众多的操作系统，
+但是没有对中文的直接支持，需要自行配置字体，具体配置方法可以参考：
+http://learn.tsinghua.edu.cn/homepage/2001315450/tex\_frame.html；
+\end{hitlist}
+
+以上软件环境均经过测试，可以正常编译该模板，在其它软件环境下可能遇到的
+问题是缺少中文字体或缺少宏包，如果遇到相应问题，欢迎到紫丁香BBS的TeX版
+讨论。
+
+
+\BiSubsection{相关目录及文件}{The Related Directories and Files}
+表~\ref{Introduction:Tab1}给出了与模板相关的目录和文件的说明。
+\begin{table}[htb]
+\centering
+\TableBiCaption{模板目录和文件说明}{Description of Directories and Files}
+\label{Introduction:Tab1}
+\begin{tabular}{lp{11cm}}
+\hline \hline
+main.tex    & 主文件\\
+gb\_452.cap & aloft的gb.cap的4.5.2版，包含了中文格式有关的基本定义。
+              BaconChina对原始版本进行了少量修改，所以请勿用其它版本覆盖\\
+gb\_452.cpx & 与gb\_452.cap内容完全一样的文件。不同的\LaTeX系统要求
+              不同的文件后缀，两个文件保证了兼容性\\
+clean.bat   & 用来删除所有编辑和编译时产生的临时文件\\
+appendix    & 附录部分，包括致谢，附录章节和个人简历及发表的文章列表等\\
+body        & 正文部分，包括正文各章节和结论\\
+figures     & 存放所有插图的目录\\
+preface     & 前言部分，包括封面，使用授权，中文摘要，英文摘要，主要符号表等\\
+reference   & 存放参考文献.bib文件的目录\\
+setup       & 存放设置文件的目录，其中package.tex包含对宏包的引
+              用和参数设置，format.tex包含具体的格式调整和定义，
+              Define.tex包含另外一些相关的定义\\
+makefile    & linux下用来自动编译和清除无用的文件\\
+\hline \hline
+\end{tabular}
+\end{table}
+
+\BiSubsection{小小节示例}{Example of Subsubsection}
+下面是小小节的示例
+
+\BiSubsubsection{小小节1}{Subsubsection 1}
+这是小小节１。 小小节的内容和标题接排，并且不出现在目录中。
+
+\BiSubsubsection{小小节２}{Subsubsection 2}
+这是小小节２。
+
+\BiSubsubsection{小小节３}{Subsubsection 3}
+这是小小节３。
+
+\BiSubsubsection{小小节４}{Subsubsection 4}
+这是小小节４。
+
+\BiSubsubsection{小小节５}{Subsubsection 5}
+这是小小节５。
+
+\BiSubsubsection{小小节６}{Subsubsection 6}
+这是小小节６。

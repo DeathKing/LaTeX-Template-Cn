@@ -1,0 +1,224 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   LaTeX File for Doctor (Master) Thesis of Tsinghua University
+%   LaTeX + CJK     清华大学博士（硕士）论文模板
+%   Based on Wang Tianshu's Template for XJTU
+%   Version: 1.75
+%   Last Update: 2004-04-12
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Copyright 2002-2004  by  Lei Wang (BaconChina)       (bcpub@sina.com)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\defaultfont
+
+\chapter{有关说明}
+\label{chap2}
+
+\section{更新记录}
+\label{chap2:update}
+
+V1.75 \quad 2004.04.12
+\begin{denselist}[]
+    \item {修改了致谢格式，使之可以允许多行}
+    \item {按学校最新要求，修改了版面的大小和位置}
+    \item {按学校最新要求，修改了摘要的格式}
+    \item {按学校最新要求，修改了缺省行距的设置}
+    \item {增加了在表格中划粗横线的命令hlinewd}
+    \item {增加对参考文献排序方式的说明}
+    \item {增加对打印选项的说明}
+    \item {增加对版面位置的说明}
+    \item {修改了前一版本有两个chap2:update的BUG}
+\end{denselist}
+
+V1.65 \quad 2004.03.14
+\begin{denselist}[]
+    \item {增加对部分编译常见错误的说明}
+    \item {改写软件环境的部分内容}
+    \item {改用natbib宏包支持引用缩写}
+    \item {增加useyap开关及相关说明}
+    \item {增加对图表编号格式的说明}
+\end{denselist}
+
+V1.51 \quad 2004.01.14
+\begin{denselist}[]
+    \item {增加对模板做出贡献者的说明}
+    \item {全面修改了关于封面以及缺省字体的设置}
+\end{denselist}
+
+V1.17 \quad 2003.10.25
+\begin{denselist}[]
+    \item {增加对王磊的《\LaTeX
+2$\varepsilon$插图指南》的引用}
+    \item {修改所有文件名大小写问题}
+    \item {增加.cpx文件}
+    \item {按学校新规定，将封面的专业名称修改为学科名称}
+    \item {增加关于.bib的使用说明}
+    \item {增加关于pdflatex的说明}
+\end{denselist}
+
+V1.0 \quad 2003.09.25
+
+\section{软件环境}
+\label{chap2:config}
+
+模板的标准编译操作系统是Windows 2000，作者使用的安装是MiKTeX
+2.1完全安装，CJK安装包1.0。此外，在MiKTeX 2.2和MiKTeX 2.3的
+完全安装上测试无误。理论上讲，安装CTEX的套装也有同样效果。另外，不使用
+完全安装，而只要补齐相应需要的package，也是可以的。
+
+根据目前的测试，模板对于texlive用户也是完全可用的。推荐使用xdvi来
+预览dvi文件。
+
+dvipdfmx是可选安装包，用来生成Ture Type中文字体的pdf，也就是可以从中拷
+贝出中文的pdf。它的前身是dvipdfm-cjk。两者效果基本一致。下载地点是\url{http://project.ktug.or.kr/dvipdfmx/}。
+
+\section{相关文档}
+\label{chap2:doc}
+
+本文中用到的\LaTeX 命令主要参考了\TeX Guru的《\LaTeX
+2$\varepsilon$用户手册》~\ucite{TEXGURU99}。此外，还参考了Micheal
+Shell为IEEE \LaTeX
+模板所写的说明文档~\ucite{SHELL02}。
+
+有关fancyhdr宏包的使用，参考了Piet van Oostrum撰写，ifuleyou @
+bbs.ctex.org翻译的《\LaTeX下的页面布局》~\ucite{OOSTRUM01}。
+有关titlesec和titlesoc宏包的使用，则参考了Javier Bezos的《The
+titlesec and titletoc
+Packages》~\ucite{BEZOS02}。有关图形图表等浮动对象的设置与处理，王
+磊~\footnote{注：此王磊非彼王磊，呵呵} 的《\LaTeX
+2$\varepsilon$插图指南》~\ucite{WANG00}提供了相当详尽的说明。
+
+\section{使用须知}
+\label{chap2:usage}
+
+作者假定模板的用户具备基本的使用\LaTeX的能力和知识。由于时间和知识所限
+，作者无法提供细致的范例和文档，特别是对于章节层次、图形、表格、公式
+等\LaTeX基本元素的使用方法，恕作者无法提供解答。请参考《\LaTeX
+2$\varepsilon$用户手册》~\ucite{TEXGURU99}，也可以到SMTH
+BBS的TeX版提问寻求帮助，
+
+在main.tex的开始部分，设置了对useyap开关的定义。如果该参数设置为true，
+编译得出的dvi文件可以在Yap里打开，也具有链接的功能，但是dvi2pdf得出
+的pdf文件没有书签。如果useyap开关设置为其它值，或者没有定义（注释
+掉那一行），那么编译得出的dvi文件不能在Yap里打开，但是dvi2pdf得出的pdf文
+件是有正常的中文书签的。用户可以根据自己的需要选择。模板的缺省设置
+是把useyap开关设置为true的。对于texlive用户，建议把useyap开关设置
+为true。
+
+有关链接、书签、hyperref宏包等问题的详细叙
+述，请参见CTEX论坛的系列讨论(\url{http://bbs.ctex.org/cgi-bin/view.cgi?forum=9&topic=48})，
+同时感谢清泉网友关于论文模板的相关工作。
+
+将模板包解开后，用户只要修改模板中相应的文字部分，然后编译main.tex即可得到符合
+标准的论文。模板包中各个目录和文件的内容见如下表格：
+
+\begin{tabular}{ll}
+\hlinewd{1pt}
+main.tex & 主文件\\
+gb\_452.cap &
+aloft的gb.cap的4.5.2版，包含了中文格式有关的基本定义。\\
+            & 作者对原始版本进行了少量修改，所以请勿用其它版本覆\\
+            & 盖\\
+gb\_452.cpx &
+与gb\_452.cap内容完全一样的文件。不同的\LaTeX系统要求\\
+            & 不同的文件后缀，两个文件保证了兼容性\\
+clean.bat & 用来删除所有编辑和编译时产生的临时文件\\
+appendix & 附录部分，包括致谢，附录章节和个人简历及发表的文章\\
+         & 列表等\\
+body & 正文部分，包括正文各章节和结论\\
+figures & 存放所有插图的目录\\
+preface  & 前言部分，包括封面，使用授权，中文摘要，英文摘要，\\
+         & 主要符号表等\\
+reference & 存放参考文献.bib文件的目录\\
+setup     & 存放设置文件的目录，其中package.tex包含对宏包的引\\
+          & 用和参数设置，format.tex包含具体的格式调整和定义\\
+\hlinewd{1pt}
+\end{tabular}
+
+\section{下载和更新}
+\label{chap2:download}
+
+作为清华大学研究生院认可的博士（硕士）论文模板，模板的最新版本由清华大
+学研究生院提供下载。具体下载地址请见清华大学综合信息服务网站－研究生院
+－表格下载栏目，或清华大学图书馆网站－电子资源－学位论文－博士论文版式
+栏目。
+
+此外，也可以在作者的个人主页上下载，地址是：
+
+\url{http://media.cs.tsinghua.edu.cn/~lei/work.htm}。
+
+有关模板本身的问题和缺陷，欢迎致信bcpub@sina.com，作者会尽量改进，并作
+相应更新。
+
+欢迎用户对这一模板进行改进，包括对范例文档进行丰富。有意者请与bcpub@sina.com联
+系。希望我们能够一起为广大研究生提供一个实用美观的论文模板。
+
+\subsection{合作更新}
+
+为保证
+\begin{denselist}[]
+    \item {模板可以长期适用于学校关于学位论文格式的变化；}
+    \item {模板的更新和维护不因个别人离开而停滞；}
+    \item {大多数学生可以将精力集中在论文本身内容的写作上。}
+\end{denselist}
+作者希望能够有一个小组来负责模板的更新维护工作。目前，在cosoft.org.cn上
+已经创建了一个名为“学位论文LaTeX+CJK模板”的项目，上面提供了模板目前已
+知的问题和最新的版本，欢迎有兴趣的同学加入，共同维护这一模板。
+
+\subsection{贡献者名单}
+
+\begin{tabular}{cl}
+\hline \hline
+1.75 & rfc(SMTH)\\
+1.65 & 冯骅，richman(SMTH)，SuperUFO(SMTH)\\
+1.51 & 冯骅\\
+\hline \hline
+\end{tabular}
+
+\section{常见问题}
+
+{\hei 问：为什么用pdflatex编译会出错？
+
+答：}由于宏包之间的兼容性不同，这个模板是用latex编译的。要生成pdf文件，
+只要在编译成功后使用dvi2pdf命令或dvi2ps,ps2pdf命令即可。
+
+{\hei 问：为什么引用文献的地方出现的是问号，还有很多错误信息？
+
+答：}先用latex编译，然后bibtex编译，最后latex两次，应该就可以了。因为
+从.bib文件中生成的引文项是与论文内容相关的，修改论文引文后需要用latex编译，
+知道有哪些引文项，然后用bibtex编译，从.bib文件中生成实际的引文部分，最后
+用latex编译，在论文中实现对参考文献的引用。
+
+{\hei 问：为什么在linux下使用时有很多包含文件的错误？
+
+答：}这应该是上一个版本的问题。上一个版本是在Windows环境下调试的，所以
+没有区分大小写，在linux下会有问题。新版本已经统一了所有的文件名为小写字母
+和数字，应该不会再有类似的问题。
+
+{\hei
+问：学校模板的图表编号的格式是形如1-1的，这里用的是形如1.1的，这样
+是否有问题？
+
+答：}没有问题。研究生院的要求是，全文中图表编号的格式必须统一一致，
+无论使用1-1还是1.1，只要贯穿全文都可以。对于\LaTeX
+模板的用户来说，这是毫无问题的。模板既然通过了研究生院的审核，有关
+格式上的要求就是有保证的，模板制作和维护组也会负责格式的更新，一般
+同学不需要在这上面做任何的改动。
+
+{\hei 问：为什么编译时会出现不识别dottedcontents命令的提示？
+
+答：}请更新你的titlesec和titletoc宏包。
+
+{\hei 问：为什么模板的奇数页是左边窄右边宽？
+
+答：}因为装订时外侧会有剪裁。
+
+{\hei 问：为什么打印出来的文档字显得比一般的要小？
+
+答：}LaTeX里用的A4纸大小和一般打印机的A4纸大小稍有不同，打印时请选择{\hei 不要}
+缩放版面。
+
+{\hei 问：怎样使参考文献按引用顺序排序？
+
+答：}把main.tex中的bibliographystyle的参数由plain改成unsrt。

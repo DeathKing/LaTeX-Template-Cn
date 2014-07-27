@@ -1,0 +1,85 @@
+\def\version{1.3}         % 该变量仅用于模板文件的版本号控制
+
+%draft 选项可以使插入的图形只显示外框，以加快预览速度。
+\documentclass[12pt,a4paper,openany,twoside]{book}
+
+\def\useyap{false}        % 是否使用Yap的开关
+\def \xueke {Engineering} % 定义学科 工学
+%\def\xueke{Science}      % 理学
+%\def\xueke{Management}   % 管理学
+%\def\xueke{Arts}         % 艺术学
+
+\def \xuewei {Doctor}     % 定义学位 博士
+%\def \xuewei {Master}    % 硕士
+
+\input{setup/package.tex} % 引用的宏包
+
+% 论文包含的内容
+\includeonly{
+                body/Introduction,
+                body/Tricks,
+                body/UpdateLog,
+                body/copyright,
+                body/conclusion,
+                appendix/appA,
+                appendix/publications,
+                appendix/Authorization,
+                appendix/acknowledgements,
+                appendix/Resume
+            }
+\begin{document}
+\begin{CJK*}{GBK}{song}
+
+\graphicspath{{figures/}} %定义所有的eps文件在 figures 子目录下
+
+\input{setup/Definition} % 文本格式定义
+\input{setup/format}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 正文部分
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
+\sloppy % 解决中英文混排的断行问题，会加入间距，但不会影响断行
+\pagenumbering{Roman}
+%\interlinepenalty -100000
+\input{ preface/cover} % 封面
+
+\addtocontents{toc}{\protect\vskip1\baselineskip} % 中文目录增加空行
+\addtocontents{toe}{\protect\vskip1\baselineskip} % 英文目录增加空行
+
+%目录
+\renewcommand{\baselinestretch}{1}
+\fontsize{12pt}{12pt}\selectfont
+\tableofcontents    % 中文目录
+\renewcommand{\baselinestretch}{1.3}
+\fontsize{12pt}{12pt}\selectfont
+\tableofengcontents % 英文目录
+\clearpage{\pagestyle{empty}\cleardoublepage} % 清除目录后面空页的页眉和页脚
+
+\mainmatter
+\defaultfont % 对应于小四的标准字号是 12pt, 可以在正文中用此命令修改所需要字体的的大小
+
+\include{body/Introduction}
+\include{body/Tricks}
+\include{body/UpdateLog}
+\include{body/copyright}
+\include{body/conclusion}   % 结论
+
+%参考文献
+\defaultfont
+\bibliographystyle{chinesebst}
+\phantomsection
+\addcontentsline{toc}{chapter}{\hei \ReferenceCName}      % 参考文献加入到中文目录
+\addcontentsline{toe}{chapter}{\bfseries \ReferenceEName} % 参考文献加入到英文目录
+\addtolength{\bibsep}{-0.8 em}
+\bibliography{reference/reference}
+
+\include{appendix/appA}            % 附录A
+\include{appendix/publications}    % 所发文章
+\include{appendix/Authorization}   % 原创性申明
+\include{appendix/acknowledgements}% 致谢
+\include{appendix/Resume}          % 个人简历
+
+\clearpage
+\end{CJK*}
+\end{document}

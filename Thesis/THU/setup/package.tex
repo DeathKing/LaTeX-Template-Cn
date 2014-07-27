@@ -1,0 +1,154 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   LaTeX File for Doctor (Master) Thesis of Tsinghua University
+%   LaTeX + CJK     清华大学博士（硕士）论文模板
+%   Based on Wang Tianshu's Template for XJTU
+%   Version: 1.75
+%   Last Update: 2004-04-12
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Copyright 2002-2004  by  Lei Wang (BaconChina)       (bcpub@sina.com)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   LaTeX File for phd thesis of xi'an Jiao Tong University
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Copyright 2002  by  Wang Tianshu    (tswang@asia.com)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% 引用的宏包和相应的定义
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% 图形支持宏包 为了使用pdftex 需要作相应判断
+
+%定义一个新判断命令
+\newif\ifpdf
+\ifx\pdfoutput\undefined
+   \pdffalse
+ \else
+   \pdfoutput=1
+   \pdftrue
+ \fi
+
+
+\usepackage[dvips]{graphicx}
+
+\usepackage{subfigure}
+% 支持彩色
+\usepackage{color}
+% eps图像
+\usepackage{epsfig}
+
+% 首行缩进宏包
+\usepackage{indentfirst}
+
+% 版面控制宏包，定义规定的版面尺寸
+\usepackage[%paperwidth=18.4cm, paperheight= 26cm,
+            %body={14.6true cm,22true cm},
+            body={15true cm,22.5true cm},
+            twosideshift=0 pt,
+            %headheight=1.0true cm
+            ]{geometry}
+
+% 中文支持宏包
+\usepackage{CJK}
+
+% 脚注控制
+\usepackage[perpage,symbol]{footmisc}
+
+% AMSLaTeX宏包 用来排出更加漂亮的公式
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% 不同于\mathcal or \mathfrak 之类的英文花体字体
+\usepackage{mathrsfs}
+
+% 定理类环境宏包，其中 amsmath 选项用来兼容 AMS LaTeX 的宏包
+\usepackage[amsmath,thmmarks]{ntheorem}
+
+% 因为图形可浮动到当前页的顶部，所以它可能会出现
+% 在它所在文本的前面. 要防止这种情况，可使用 flafter
+% 宏包
+%\usepackage{flafter}
+
+%浮动图形控制宏包
+%允许上一个section的浮动图形出现在下一个section的开始部分
+%该宏包提供处理浮动对象的 \FloatBarrier 命令，使所有未处
+%理的浮动图形立即被处理
+\usepackage[below]{placeins}
+
+% 图文混排用宏包
+\usepackage{floatflt}
+
+% 图形和表格的控制
+\usepackage{rotating}
+
+% tex1cm宏包，控制字体的大小
+\usepackage{type1cm}
+
+% 控制标题的宏包
+\usepackage[sf]{titlesec}
+
+% 控制目录的宏包
+\usepackage{titletoc}
+
+% 处理数学公式中的黑斜体的宏包
+\usepackage{bm}
+
+%可将浮动对象放置到文件的最后
+%\usepackage{endfloat}
+
+% fancyhdr宏包 页眉和页脚的相关定义
+\usepackage{fancyhdr}
+\usepackage{fancyref}
+
+% 支持引用的宏包
+%\usepackage{cite}
+% 支持引用缩写的宏包
+\usepackage{natbib}
+\usepackage{hypernat}
+
+%浮动图形和表格标题样式
+\usepackage{caption2}
+
+% 定制表格和图形的多行标题行距
+\usepackage{setspace}
+
+% 打印当前页面格式的宏包
+\usepackage{layouts}
+
+% 使用Times字体的宏包
+\usepackage{times}
+
+% 生成有书签的pdf及其开关
+\def\a{true}
+\ifx\a\useyap
+\usepackage[dvipdf,
+            CJKbookmarks=true,
+            bookmarksnumbered=true,
+            bookmarksopen=true,
+            colorlinks=true,
+            citecolor=blue,
+            linkcolor=red,
+            anchorcolor=green,
+            urlcolor=blue
+            ]{hyperref}
+\else
+\usepackage[dvipdfm,
+            CJKbookmarks=true,
+            bookmarksnumbered=true,
+            bookmarksopen=true,
+            colorlinks=true,
+            citecolor=blue,
+            linkcolor=red,
+            anchorcolor=green,
+            urlcolor=blue
+            ]{hyperref}
+\AtBeginDvi{\special{pdf:tounicode GBK-EUC-UCS2}} % GBK -> Unicode
+\fi

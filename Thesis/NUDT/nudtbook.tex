@@ -1,0 +1,206 @@
+%\documentclass[CJK,twoside,11pt]{nudtbook} % 博士论文双面打印
+%\documentclass[CJK,oneside,11pt]{nudtbook} % 硕士论文单面打印
+%\documentclass[phd]{nudtbook} % 博士论文
+%\documentclass[master]{nudtbook} % 硕士论文或者（master为默认值）
+\documentclass{nudtbook} % 硕士论文
+
+%\usepackage[pdftex]{graphicx}
+\usepackage{amsmath,amssymb}
+\input epsf
+
+\DeclareRobustCommand\CTeX{$\mathbb{C}$\kern-.05em\TeX{}}
+
+
+\fenleihao{TP391}
+\xuehao{977034}
+\UDC{}
+\miji{}
+\lunwenleixing{理学硕士学位论文}
+                         %①    学硕士学位论文；
+                         %②同等学力申请    学硕士学位论文；
+                         %③工程硕士学位论文；
+                         %④    学博士学位论文；
+                         %⑤同等学力申请    学博士学位论文
+\zuozheleixing{硕士生}   %博士生，硕士生，申请人
+\title{国防科技大学硕（博）士学位论文~\LaTeX\ 模版\\ 使用说明（ver. 041101）}
+\displaytitle{国防科技大学硕（博）士学位论文~\LaTeX\ 模版使用说明}
+%通常中文题目会比较长，封面会设置成多行（如上两行，但是不适合在其它地方显示
+
+\author{毛\ 紫\ 阳}
+\zhuanye{计算数学}
+\fangxiang{信息处理的快速算法与并行算法}
+\jiaoshi{成礼智\quad 教授}
+\date{二〇〇四年十一月}
+
+\begin{document}
+\maketitle
+\frontmatter
+\tableofcontents
+%\listoffigures
+%\listoftables
+
+\midmatter
+\include{cn_abstract}
+\include{en_abstract}
+
+\mainmatter
+\chapter{新版说明}
+\section{重要更新}
+\begin{enumerate}
+  \item 参考中国科学院计算数学与科学工程计算研究所的模版{$^{\cite{jisuanshuomoban}}$}，重写了代码，结构更为清晰；
+  \item 使用参数“phd”和“master”代替原来的“twoside”和“oneside”来选择博士论文或者硕士论文；
+  \item 基本兼容上一版的命令，原论文仅修改文档声明即可使用新的~nudtbook.cls 编译（未经完全测试），但是建议仔细阅读本文档
+        来了解新版的特点；
+  \item 修正了“参考文献表”，“致谢”等标题没有居中的~BUG（感谢~huangzh73 报告此~BUG）；
+  \item 加大了正文中“参考文献表”等标题的字距，同时并不改变目录相应项的字距（感谢~huangzh73 提供该建议）；
+  \item 新增“定理”、“命题”等命令（借鉴计算所的模版{$^{\cite{jisuanshuomoban}}$}）；
+  \item 新增“$\backslash$acknowledgement”命令实现“致谢”部分；
+  \item 新增“publications”环境，实现“发表文章目录”，使用方法与“thebibliography”环境类似；
+  \item 新的维护网站—www.ai7.org；
+  \item 更新了说明文件（与第一版区别不大）。
+\end{enumerate}
+
+\chapter{使用说明}
+    由于各种原因，模版作者不可能提供详细的手册和示例。特别是对于~\TeX{}\slash\LaTeX\ 系统的安装调试，CJK、CCT
+软件的配置，添加中文字体的方法，以及章节层次、公式、插图、表格等~\LaTeX\ 基本元素的
+说明和使用方法，请用户自行参考有关书籍资料。其中一些有代表性的文献，已在“参考文献表”中给出。以下的叙述，
+假定模版用户具备基本的~\TeX{}\slash\LaTeX\ 知识，可以熟练地使用系统标准类（如：article, book, cctart, cctbook 等）
+撰写科技论文。
+\section{所需软件环境}
+    作者开发时所使用的软件环境如下：
+\begin{quote}
+  Windows 2003 + \CTeX{} 2.4.0 + CCT 0.6.1
+\end{quote}
+理论上讲，无论在何种操作系统下，只要
+\begin{enumerate}
+  \item 正确安装了一种~\TeX{}\slash\LaTeX\ 发行版（如：\TeX{}Live、Mik\TeX{}、te\TeX{}等）；
+  \item 正确配置了~CJK；
+  \item 正确配置了新版的~CCT（建议使用~CCT 0.6.1 以上版本）；
+  \item 正确配置了有关字体（英文字体通常不需要额外配置，中文字体至少应包括黑体、宋体、仿宋体三种，
+        其它字体是否需要安装，视论文内容而定）
+\end{enumerate}
+都应该可以正常使用该模版。本文的源文件可以用于测试用户的计算机是否具备上述条件。\par
+    对于使用~MS Windows 操作系统的用户，推荐使用~\CTeX{} 套装系列软件，或者类似~
+\TeX{}Live + \CTeX{}-CS + \CTeX{}-Fonts 这样的组合，可以大大简化安装配置的工作量。
+
+\section{使用方法}
+    \begin{enumerate}
+      \item 将~nudtbook.cls、declaration.tex 及~chinesebst.bst 放在论文主文件所在目录下，
+            或者~\TeX{}\slash\LaTeX\ 系统可以找到的目录下
+      \item 在论文的导言区使用如下声明
+        \begin{verbatim}
+          \documentclass[phd]{nudtbook} %适用于博士学位论文
+          或
+          \documentclass[master]{nudtbook} %适用于硕士学位论文
+        \end{verbatim}
+        由于“master”为默认选项，所以硕士论文还可以更简单的使用如下声明
+        \begin{verbatim}
+          \documentclass{nudtbook} %适用于硕士学位论文
+        \end{verbatim}
+      \item 以下与使用~cctbook 类撰写论文的方法相同，具体的设置请参考本文的源文件。
+    \end{enumerate}
+
+\section{新增命令示例}
+\subsection{定理、证明等}
+\begin{definition}
+  \label{def:1}
+  这是一个定义。
+\end{definition}
+
+\begin{lemma}
+  \label{lem:1}
+  这是一条引理。见定义\ref{def:1}。
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:2}
+  这是又一条引理。
+\end{lemma}
+
+\begin{theorem}
+  \label{thm:1}
+  这是一条定理。
+\end{theorem}
+
+\begin{corollary}
+  \label{cor:1}
+  这是推论。
+\end{corollary}
+
+\bigskip
+
+表~\ref{tab:1}列出了模版定义的定理类环境的名称与编号方式。
+
+\begin{table}[ht]
+  \centering
+  \caption{定理类环境}
+  \label{tab:1}
+  \begin{tabular}{|c|l|l|}
+    \hline
+         & 环境名   & 编号方式 \\ \hline
+    例   &\tt example   & \verb|章.节.编号| \\ \hline
+    定义 &\tt definition& \verb|章.节.编号| \\ \hline
+    定理 &\tt theorem   & \verb|章.编号| \\ \hline
+    引理 &\tt lemma & 与定理一起编号 \\ \hline
+    推论 &\tt corollary & 与定理一起编号 \\ \hline
+  \end{tabular}
+\end{table}
+
+
+\section{已知错误}
+\begin{itemize}
+  \item 未经官方认可。
+  \item 目录部分的页码形式与样本文件不符
+  \item 由于使用的是~CCT，所有类似“宋体粗体”这样的要求，都被黑体所代替（中文中似乎没有加粗的概念）
+  \item 日期需要手动输入
+  \item 题目过长时（比如超过~25 字），个别地方的显示需要手工调节（比如“独创性声明”）
+  \item 如果封面上“专业方向”过长，可直接修改~nudtbook.cls 中的相应设置。
+  \item 参考文献的列表尚不能完全自动完成，需要手动修改 .bbl 文件。主要的问题在于，中外文对参考文献
+        格式的要求不同，比如“edition”这样的词不能自动转换。因此建议论文主体定稿后，再去修改 .bbl
+        文件，并且修改后及时备份。
+  \item 没有测试与其它宏包的兼容性。
+  \item 模版只是完成了“国防科技大学撰写硕士、博士学位论文的规定”中对学位论文的格式要求，
+        这些要求是最基本的。每个学科都可能会有对论文格式的特殊要求，但是这些并不包括在该模版中，
+        用户可以通过使用其它宏包，或者自己编写代码来实现所需要的功能。
+\end{itemize}
+
+\chapter{开发说明}
+    由于接触~\LaTeX{} 时间不长，也没有系统的学习过，只有邓老师的那本书{$^{\cite{latex:deng}}$}翻的多些，
+水平非常有限，所以这个模版主要是东拼西凑而成（涉及到的有关文件在“致谢”中列出）。模版的稳定性，
+兼容性不能保证。欢迎大家测试，并提出意见或建议。\par
+    模版的维护网站：www.ai7.org，维护邮箱：mao-ziyang@yeah.net。\par
+    作者非常希望该模版可以给您的学习研究工作带来一些方便，同时愿意解决关于模版的任何问题。欢迎使用、测试。
+如果您在使用中遇到问题，可以通过以下方式与作者联系（按响应速度由快到慢排序）；
+\begin{enumerate}
+  \item 发邮件至~mao-ziyang@yeah.net；
+  \item 在~www.ai7.org 上留言；
+  \item 在~bbs.ctex.org 之“原创空间”之“模版”发贴。
+\end{enumerate}
+希望可以逐步完善这个模版。\par
+    作者希望使用该模版的朋友在方便的时候给~mao-ziyang@yeah.net 发一封邮件，或者在~www.ai7.org 上留言，
+这样将给作者以极大的鼓励，以保持深厚的兴趣进行模版的维护更新。如果您的经济条件允许您给予模版作者
+一定的物质支持，也请发邮件至~mao-ziyang@yeah.net。
+
+%\chapter*{致谢}
+\acknowledgement
+    该模版借鉴了中国科学院计算数学与科学工程计算研究所的模版{$^{\cite{jisuanshuomoban}}$}，
+参考或直接拷贝了~cctbase.sty、~book.cls、~amsbook.cls、~cjaa.cls~（\LaTeX{} document class for Chinese Journal of Astronomy and Astrophysics）中的部分代码，
+chinesebst.bst 直接来自清泉模版，在此向有关作者表示衷心的感谢。由于各种原因，我并没有与上述作者一一取得联系，
+没有就我这种作法征得他们的同意，如果有作者认为我的做法是不合适的，请与我联系。\par
+    \CTeX{} 套装系列软件为我的工作提供了基础，\CTeX{} 网站及\CTeX{} 论坛的站长及各位版主、网友给了
+我极大的帮助和启发，在此表示感谢。\par
+    开发的过程中，参考和引用了邓建松老师的《\LaTeXe{} 科技排版指南》\cite{latex:deng}一书中的部分示例和代码。\par
+    感谢~huangzh73 和~wangshaogan 两位朋友使用并测试了模版的上一版，并提供了有价值的意见和建议。
+
+\begin{publications}{00}
+  \bibitem{p1} 作者，文章题目，期刊名，年份(期数):起止页码
+  \bibitem{p2} 作者，书名，版次，出版地：出版单位，年份，起止页码
+\end{publications}
+
+\bibliographystyle{chinesebst}
+\bibliography{demo}
+\nocite{cctlatex}
+\nocite{qingquanmoban}
+\nocite{lshort:en}
+
+\end{document}
