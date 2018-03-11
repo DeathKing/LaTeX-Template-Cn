@@ -1,11 +1,15 @@
+**注意！！**
+
+此仓库已停止更新，推荐读者访问：[LaTeX 开源小屋 ](http://www.latexstudio.net/) 获取更多、更现代(xeLaTeX)、支持度更好的 \LaTeX 模板。
+
+--------
+
 LaTeX-Template-Cn
 =================
 
 收集互联网上各种实用 \LaTeX 中文模版，并适配至 CTeX 套件 2.9.2.164 版本。
 
 主要来源：[LaTeX 编辑部 ](http://zzg34b.w3.c361.com/templet/graduateThesis.htm)
-
-推荐读者访问：[LaTeX 开源小屋 ](http://www.latexstudio.net/) 获取更多、更现代(xeLaTeX)、支持度更好的 \LaTeX 模板。
 
 ## 关于LaTeX环境
 
